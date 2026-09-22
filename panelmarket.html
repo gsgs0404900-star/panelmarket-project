@@ -78,6 +78,44 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
 .card-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
 .price{font-size:20px;color:#25a0ff;font-weight:900}
 .details{font-size:11px;padding:9px 12px;border:1px solid #4369ff;border-radius:20px;color:#dfe8ff;background:#0a1731;cursor:pointer}
+  
+  /* MOBİL KATEGORİLER SABİT GÖRÜNÜR */
+@media(max-width:760px){
+
+.layout{
+    display:flex !important;
+    flex-direction:column !important;
+}
+
+.sidebar{
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    height:auto !important;
+    width:100% !important;
+    order:1 !important;
+}
+
+.categories{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+}
+
+.cat{
+    display:flex !important;
+    justify-content:space-between !important;
+}
+
+.range{
+    display:block !important;
+}
+
+.content{
+    order:2 !important;
+}
+
+}
+  
 @media(max-width:760px){
 
 .container{
