@@ -4,196 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giriş Yap - PanelMarket</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background:
-        radial-gradient(circle at top, #173d72 0%, #071426 45%, #030811 100%);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .box {
-      width: 100%;
-      max-width: 430px;
-      background: rgba(9, 23, 43, 0.96);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 22px;
-      padding: 35px 30px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.45);
-    }
-
-    .logo {
-      text-align: center;
-      font-size: 30px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .subtitle {
-      text-align: center;
-      color: #aebbd0;
-      margin-bottom: 30px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 14px;
-      color: #dbe5f3;
-    }
-
-    input {
-      width: 100%;
-      height: 50px;
-      border: 1px solid #31445f;
-      border-radius: 12px;
-      background: #0b1a30;
-      color: white;
-      padding: 0 15px;
-      outline: none;
-      margin-bottom: 18px;
-      font-size: 15px;
-    }
-
-    input:focus {
-      border-color: #4d9cff;
-      box-shadow: 0 0 0 3px rgba(77,156,255,.12);
-    }
-
-    .button {
-      width: 100%;
-      height: 50px;
-      border: 0;
-      border-radius: 12px;
-      background: #1677ff;
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .button:hover {
-      background: #0869ec;
-    }
-
-    .message {
-      min-height: 22px;
-      margin-top: 15px;
-      text-align: center;
-      color: #ffb4b4;
-      font-size: 14px;
-    }
-
-    .links {
-      text-align: center;
-      margin-top: 22px;
-      color: #aebbd0;
-      font-size: 14px;
-    }
-
-    .links a {
-      color: #5ca7ff;
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .back {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #aebbd0;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .back:hover {
-      color: white;
-    }
-  </style>
 </head>
-
 <body>
 
-  <div class="box">
+  <h1>PanelMarket</h1>
+  <h2>Giriş Yap</h2>
 
-    <div class="logo">PanelMarket</div>
-    <div class="subtitle">Hesabınıza giriş yapın</div>
+  <form>
+    <input type="email" placeholder="E-posta" required>
+    <br><br>
 
-    <form id="loginForm">
+    <input type="password" placeholder="Şifre" required>
+    <br><br>
 
-      <label for="email">E-posta</label>
-      <input
-        id="email"
-        type="email"
-        placeholder="E-posta adresiniz"
-        autocomplete="email"
-        required
-      >
+    <button type="submit">Giriş Yap</button>
+  </form>
 
-      <label for="password">Şifre</label>
-      <input
-        id="password"
-        type="password"
-        placeholder="Şifreniz"
-        autocomplete="current-password"
-        required
-      >
+  <br>
 
-      <button class="button" type="submit">
-        Giriş Yap
-      </button>
-
-      <div class="message" id="message"></div>
-
-    </form>
-
-    <div class="links">
-      Hesabınız yok mu?
-      <a href="./register.html">Kayıt Ol</a>
-    </div>
-
-    <a class="back" href="./index.html">
-      ← Ana Sayfaya Dön
-    </a>
-
-  </div>
-
-  <script>
-    const form = document.getElementById("loginForm");
-    const message = document.getElementById("message");
-
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-
-      if (!email || !password) {
-        message.textContent = "Lütfen e-posta ve şifrenizi girin.";
-        return;
-      }
-
-      /*
-       * Buraya mevcut giriş sistemin bağlanabilir.
-       * Sayfanın Vercel'de açılması için herhangi bir
-       * sunucu isteği zorunlu değildir.
-       */
-
-      message.style.color = "#9dffbd";
-      message.textContent = "Giriş bilgileri gönderilmeye hazır.";
-    });
-  </script>
+  <a href="./register.html">Kayıt Ol</a>
+  <br>
+  <a href="./index.html">Ana Sayfa</a>
 
 </body>
 </html>
