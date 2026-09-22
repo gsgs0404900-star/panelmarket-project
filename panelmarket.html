@@ -80,11 +80,6 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
 .details{font-size:11px;padding:9px 12px;border:1px solid #4369ff;border-radius:20px;color:#dfe8ff;background:#0a1731;cursor:pointer}
 @media(max-width:1100px){.navlinks{gap:12px}.hero{padding:30px}.hero-art{width:38%}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.container{width:calc(100% - 20px)}.nav{padding:12px;gap:12px}.navlinks{display:none}.hero{padding:25px;display:block}.hero-art{width:100%;height:150px;margin-top:20px}.hero h1{font-size:34px}.layout{grid-template-columns:1fr}.sidebar{display:none}.toolbar{flex-wrap:wrap}.search{width:100%}.grid{grid-template-columns:1fr}.hero .btn{padding:12px 14px}}
-
-.auth-overlay{display:none;position:fixed;inset:0;background:#0009;z-index:999;align-items:center;justify-content:center}
-.auth-box{width:min(380px,90%);background:#071426;border:1px solid #27456f;border-radius:20px;padding:25px;text-align:center;box-shadow:0 20px 60px #000}
-.auth-box h2{margin:0 0 12px}.auth-box p{color:#91a7c6}
-.auth-btn{display:block;width:100%;margin:10px 0;padding:13px;border-radius:12px;border:1px solid #2775ff;background:#138fff;color:white;font-weight:800;cursor:pointer}
 </style>
 </head>
 <body>
@@ -99,7 +94,7 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
       <a href="#">▥ Hakkımızda</a>
       <a href="support.html">♧ Destek</a>
     </div>
-    <div class="nav-actions"><button class="iconbtn">⌕</button><button class="account" onclick="openAccount()">♙ Hesabım</button></div>
+    <div class="nav-actions"><button class="iconbtn">⌕</button><button class="account">♙ Hesabım⌄</button></div>
   </nav>
 
   <section class="hero">
@@ -108,11 +103,23 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
       <h1>Profesyonel <span>Web Panelleri</span></h1>
       <p>Hazır yönetim panelleri ve modern web site temaları ile projenizi bir üst seviyeye taşıyın.</p>
       <button class="btn" onclick="document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">▦ Panelleri İncele</button>
-      <button class="btn alt" onclick="alert('Tema paketleri yakında listelenecek.')">✿ Tema Paketleri</button>
+      <button class="btn alt" onclick="document.querySelector('#temalar').scrollIntoView({behavior:'smooth'})">✿ Tema Paketleri</button>
     </div>
     <div class="hero-art">
       <div class="screen back"><div class="dots"><i></i><i></i><i></i></div><h3>Web Store</h3><div class="chart"><b style="height:35%"></b><b style="height:65%"></b><b style="height:45%"></b><b style="height:90%"></b><b style="height:70%"></b></div></div>
       <div class="screen main"><div class="dots"><i></i><i></i><i></i></div><h3>Dashboard Analytics</h3><div class="chart"><b style="height:30%"></b><b style="height:55%"></b><b style="height:45%"></b><b style="height:82%"></b><b style="height:65%"></b><b style="height:100%"></b><b style="height:76%"></b></div></div>
+    </div>
+  </section>
+
+  <section id="temalar" style="margin:26px 0 0;border:1px solid #27456f;background:linear-gradient(150deg,#07172c,#041022);border-radius:22px;padding:26px;box-shadow:0 14px 45px #0003;scroll-margin-top:110px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px;">
+      <div><div style="color:#8dbaff;font-size:12px;font-weight:800;letter-spacing:1px;">✿ TASARIM KOLEKSİYONU</div><h2 style="margin:6px 0 0;font-size:28px;">Tema Paketleri</h2><p style="margin:8px 0 0;color:#91a7c6;">Modern, kullanıma hazır ve mobil uyumlu tema paketlerini keşfedin.</p></div>
+      <button class="btn alt" onclick="document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">Tüm Ürünlere Git →</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;">
+      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;"><div style="font-size:28px;">◈</div><h3 style="margin:12px 0 8px;">Kurumsal Tema</h3><p style="color:#91a7c6;font-size:13px;line-height:1.6;">Profesyonel şirket ve marka siteleri için.</p><button class="details" onclick="document.querySelector('#search').value='Kurumsal';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">İncele →</button></div>
+      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;"><div style="font-size:28px;">◇</div><h3 style="margin:12px 0 8px;">E-Ticaret Tema</h3><p style="color:#91a7c6;font-size:13px;line-height:1.6;">Ürün ve mağaza projeleri için modern tasarım.</p><button class="details" onclick="document.querySelector('#search').value='E-Ticaret';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">İncele →</button></div>
+      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;"><div style="font-size:28px;">▧</div><h3 style="margin:12px 0 8px;">Portföy Tema</h3><p style="color:#91a7c6;font-size:13px;line-height:1.6;">Kişisel çalışmalar ve yaratıcı projeler için.</p><button class="details" onclick="document.querySelector('#search').value='Portföy';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">İncele →</button></div>
     </div>
   </section>
 
@@ -143,15 +150,6 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
   </section>
 </div>
 
-
-<div class="auth-overlay" id="authOverlay">
- <div class="auth-box">
-  <h2>Hesabım</h2>
-  <p>Devam etmek için giriş yapın veya kayıt olun.</p>
-  <button class="auth-btn" onclick="location.href='login.html'">Giriş Yap</button>
-  <button class="auth-btn" onclick="location.href='register.html'">Kayıt Ol</button>
- </div>
-</div>
 <script>
 const SUPABASE_URL = 'https://gakvvqcsaoxhbuqvimqe.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_74vcsqJXv7J_P-1hDwGQyg_WQBvIdty';
@@ -198,13 +196,6 @@ async function loadProductsFromSupabase(){
   }
 }
 
-function openAccount(){
- const overlay=document.getElementById('authOverlay');
- overlay.style.display='flex';
-}
-document.getElementById('authOverlay')?.addEventListener('click',e=>{
- if(e.target.id==='authOverlay') e.target.style.display='none';
-});
 function money(n){return n.toLocaleString('tr-TR')+' TL'}
 function renderCards(){
  const q=document.getElementById('search').value.toLowerCase();
@@ -216,8 +207,23 @@ function renderCards(){
  document.getElementById('cardGrid').innerHTML=list.map(p=>`
  <article class="card">
   <div class="preview"><span class="badge ${p.cls}">${p.badge}</span><div class="mock-window"><div class="mock-top"></div><div class="mock-body"><div class="mock-side"></div><div class="mock-main"></div></div></div></div>
-  <div class="card-body"><h3>${p.name}</h3><span class="tag">${p.tag}</span><div class="features">${p.features}</div><div class="card-bottom"><div class="price">${money(p.price)}</div><button class="details" onclick="alert('${p.name} detayları yakında eklenecek.')">Detayları Gör　→</button></div></div>
+  <div class="card-body"><h3>${p.name}</h3><span class="tag">${p.tag}</span><div class="features">${p.features}</div><div class="card-bottom"><div class="price">${money(p.price)}</div><button class="details" onclick="openDetails(${JSON.stringify(p).replace(/\"/g,'&quot;')})">Detayları Gör　→</button></div></div>
  </article>`).join('')||'<p>Bu filtrelere uygun ürün bulunamadı.</p>';
+}
+function openDetails(product){
+  const params = new URLSearchParams({
+    id: product.id || product.name || 'product',
+    name: product.name || '',
+    category: product.cat || '',
+    tag: product.tag || '',
+    price: String(product.price || 0),
+    badge: product.badge || '',
+    features: product.features || '',
+    description: product.description || ('\u003c' + (product.name || 'Ürün') + '\u003e için ürün detayları, özellikler ve satın alma seçenekleri.'),
+    image_url: product.image_url || '',
+    download_url: product.download_url || product.file_url || ''
+  });
+  window.location.href = 'detail.html?' + params.toString();
 }
 function filterCategory(cat,el){active=cat;document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderCards()}
 function updatePrice(v){document.getElementById('priceValue').textContent=money(Number(v));renderCards()}
