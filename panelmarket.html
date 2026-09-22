@@ -80,6 +80,64 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
 .details{font-size:11px;padding:9px 12px;border:1px solid #4369ff;border-radius:20px;color:#dfe8ff;background:#0a1731;cursor:pointer}
 @media(max-width:1100px){.navlinks{gap:12px}.hero{padding:30px}.hero-art{width:38%}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.container{width:calc(100% - 20px)}.nav{padding:12px;gap:12px}.navlinks{display:none}.hero{padding:25px;display:block}.hero-art{width:100%;height:150px;margin-top:20px}.hero h1{font-size:34px}.layout{grid-template-columns:1fr}.sidebar{display:none}.toolbar{flex-wrap:wrap}.search{width:100%}.grid{grid-template-columns:1fr}.hero .btn{padding:12px 14px}}
+
+.about-section{
+  margin:26px 0 0;
+  border:1px solid #27456f;
+  background:linear-gradient(150deg,#07172c,#041022);
+  border-radius:22px;
+  padding:28px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 330px;
+  gap:24px;
+  align-items:center;
+  box-shadow:0 14px 45px #0003;
+  scroll-margin-top:110px;
+}
+.about-kicker{color:#42aaff;font-size:12px;font-weight:900;letter-spacing:1.4px}
+.about-section h2{font-size:30px;margin:7px 0 10px}
+.about-section p{color:#91a7c6;line-height:1.65;max-width:760px;margin:0}
+.about-points{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}
+.about-points span{
+  background:#0a1a31;border:1px solid #254467;border-radius:999px;
+  padding:8px 11px;color:#c8d8ed;font-size:12px
+}
+.about-card{
+  border:1px solid #315276;background:linear-gradient(145deg,#0b2341,#071326);
+  border-radius:17px;padding:21px;display:flex;flex-direction:column;gap:9px
+}
+.about-card strong{font-size:18px}
+.about-card span{color:#91a7c6;font-size:13px;line-height:1.5}
+.about-card .details{align-self:flex-start;margin-top:8px}
+.account-modal{
+  position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+  z-index:1000;padding:20px
+}
+.account-modal.open{display:flex}
+.account-backdrop{position:absolute;inset:0;background:#000b;backdrop-filter:blur(8px)}
+.account-box{
+  position:relative;width:min(420px,100%);padding:28px;border-radius:22px;
+  border:1px solid #315276;background:linear-gradient(150deg,#0a1e39,#040c18);
+  box-shadow:0 25px 90px #000b;z-index:1
+}
+.account-close{
+  position:absolute;right:13px;top:11px;width:38px;height:38px;border-radius:12px;
+  border:1px solid #27456f;background:#0a1930;color:#dceaff;font-size:25px;cursor:pointer
+}
+.account-icon{
+  width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#138fff,#2365ff);font-size:25px;margin-bottom:16px
+}
+.account-box h2{margin:7px 0 8px;font-size:28px}
+.account-box p{color:#91a7c6;line-height:1.55;margin:0 0 20px}
+.account-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.account-actions .btn{text-align:center}
+@media(max-width:760px){
+  .about-section{grid-template-columns:1fr;padding:22px}
+  .about-section h2{font-size:25px}
+  .account-actions{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -88,13 +146,13 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
     <div class="logo"><span>◢</span> Panel<i>Market</i></div>
     <div class="navlinks">
       <a class="active" href="#">⌂ Anasayfa</a>
-      <a href="#paneller">▦ Paneller⌄</a>
-      <a href="#paneller">▦ Kategoriler⌄</a>
+      <a href="#paneller">▦ Paneller</a>
+      <a href="#paneller">▦ Kategoriler</a>
       <a href="#fiyatlar">◉ Fiyatlar</a>
-      <a href="#">▥ Hakkımızda</a>
-      <a href="#">♧ Destek</a>
+      <a href="#hakkimizda">▥ Hakkımızda</a>
+      <a href="support.html">♧ Destek</a>
     </div>
-    <div class="nav-actions"><button class="iconbtn">⌕</button><button class="account">♙ Hesabım⌄</button></div>
+    <div class="nav-actions"><button class="iconbtn" type="button" onclick="focusSearch()" aria-label="Ara">⌕</button><button class="account" type="button" onclick="openAccount()">♙ Hesabım</button></div>
   </nav>
 
   <section class="hero">
@@ -103,11 +161,43 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
       <h1>Profesyonel <span>Web Panelleri</span></h1>
       <p>Hazır yönetim panelleri ve modern web site temaları ile projenizi bir üst seviyeye taşıyın.</p>
       <button class="btn" onclick="document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">▦ Panelleri İncele</button>
-      <button class="btn alt" onclick="alert('Tema paketleri yakında listelenecek.')">✿ Tema Paketleri</button>
+      <button class="btn alt" onclick="document.querySelector('#temalar').scrollIntoView({behavior:'smooth'})">✿ Tema Paketleri</button>
     </div>
     <div class="hero-art">
       <div class="screen back"><div class="dots"><i></i><i></i><i></i></div><h3>Web Store</h3><div class="chart"><b style="height:35%"></b><b style="height:65%"></b><b style="height:45%"></b><b style="height:90%"></b><b style="height:70%"></b></div></div>
       <div class="screen main"><div class="dots"><i></i><i></i><i></i></div><h3>Dashboard Analytics</h3><div class="chart"><b style="height:30%"></b><b style="height:55%"></b><b style="height:45%"></b><b style="height:82%"></b><b style="height:65%"></b><b style="height:100%"></b><b style="height:76%"></b></div></div>
+    </div>
+  </section>
+
+  <section id="temalar" style="margin:26px 0 0;border:1px solid #27456f;background:linear-gradient(150deg,#07172c,#041022);border-radius:22px;padding:26px;box-shadow:0 14px 45px #0003;scroll-margin-top:110px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px;">
+      <div><div style="color:#8dbaff;font-size:12px;font-weight:800;letter-spacing:1px;">✿ TASARIM KOLEKSİYONU</div><h2 style="margin:6px 0 0;font-size:28px;">Tema Paketleri</h2><p style="margin:8px 0 0;color:#91a7c6;">Modern, kullanıma hazır ve mobil uyumlu tema paketlerini keşfedin.</p></div>
+      <button class="btn alt" onclick="document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">Tüm Ürünlere Git →</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;">
+      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;"><div style="font-size:28px;">◈</div><h3 style="margin:12px 0 8px;">Kurumsal Tema</h3><p style="color:#91a7c6;font-size:13px;line-height:1.6;">Profesyonel şirket ve marka siteleri için.</p><button class="details" onclick="document.querySelector('#search').value='Kurumsal';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">İncele →</button></div>
+      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;"><div style="font-size:28px;">◇</div><h3 style="margin:12px 0 8px;">E-Ticaret Tema</h3><p style="color:#91a7c6;font-size:13px;line-height:1.6;">Ürün ve mağaza projeleri için modern tasarım.</p><button class="details" onclick="document.querySelector('#search').value='E-Ticaret';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">İncele →</button></div>
+      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;"><div style="font-size:28px;">▧</div><h3 style="margin:12px 0 8px;">Portföy Tema</h3><p style="color:#91a7c6;font-size:13px;line-height:1.6;">Kişisel çalışmalar ve yaratıcı projeler için.</p><button class="details" onclick="document.querySelector('#search').value='Portföy';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">İncele →</button></div>
+    </div>
+  </section>
+
+
+  <section id="hakkimizda" class="about-section">
+    <div class="about-copy">
+      <div class="about-kicker">PANELMARKET</div>
+      <h2>Web projeleriniz için hazır çözümler</h2>
+      <p>PanelMarket; modern web panellerini, tema paketlerini ve kullanıma hazır dijital çözümleri tek yerde sunmak için tasarlandı.</p>
+      <div class="about-points">
+        <span>✓ Mobil uyumlu</span>
+        <span>✓ Modern tasarım</span>
+        <span>✓ Kolay kurulum</span>
+        <span>✓ Güvenli alışveriş</span>
+      </div>
+    </div>
+    <div class="about-card">
+      <strong>Bir projeniz mi var?</strong>
+      <span>Ürünleri inceleyin veya destek ekibine ulaşın.</span>
+      <a href="support.html" class="details">Desteğe Git →</a>
     </div>
   </section>
 
@@ -136,6 +226,22 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
       <div class="grid" id="cardGrid"></div>
     </main>
   </section>
+</div>
+
+
+<div class="account-modal" id="accountModal" aria-hidden="true">
+  <div class="account-backdrop" onclick="closeAccount()"></div>
+  <div class="account-box" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+    <button class="account-close" type="button" onclick="closeAccount()" aria-label="Kapat">×</button>
+    <div class="account-icon">♙</div>
+    <div class="about-kicker">PANELMARKET HESAP</div>
+    <h2 id="accountTitle">Hesabım</h2>
+    <p>Hesap işlemleri için aşağıdaki seçeneklerden birini kullanın.</p>
+    <div class="account-actions">
+      <a href="login.html" class="btn">Giriş Yap</a>
+      <a href="register.html" class="btn alt">Kayıt Ol</a>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -184,6 +290,29 @@ async function loadProductsFromSupabase(){
   }
 }
 
+
+function focusSearch(){
+  const search = document.getElementById('search');
+  if(!search) return;
+  search.scrollIntoView({behavior:'smooth', block:'center'});
+  setTimeout(()=>{search.focus(); search.select();}, 350);
+}
+function openAccount(){
+  const modal=document.getElementById('accountModal');
+  if(!modal) return;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeAccount(){
+  const modal=document.getElementById('accountModal');
+  if(!modal) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAccount();});
+
 function money(n){return n.toLocaleString('tr-TR')+' TL'}
 function renderCards(){
  const q=document.getElementById('search').value.toLowerCase();
@@ -195,8 +324,23 @@ function renderCards(){
  document.getElementById('cardGrid').innerHTML=list.map(p=>`
  <article class="card">
   <div class="preview"><span class="badge ${p.cls}">${p.badge}</span><div class="mock-window"><div class="mock-top"></div><div class="mock-body"><div class="mock-side"></div><div class="mock-main"></div></div></div></div>
-  <div class="card-body"><h3>${p.name}</h3><span class="tag">${p.tag}</span><div class="features">${p.features}</div><div class="card-bottom"><div class="price">${money(p.price)}</div><button class="details" onclick="alert('${p.name} detayları yakında eklenecek.')">Detayları Gör　→</button></div></div>
+  <div class="card-body"><h3>${p.name}</h3><span class="tag">${p.tag}</span><div class="features">${p.features}</div><div class="card-bottom"><div class="price">${money(p.price)}</div><button class="details" onclick="openDetails(${JSON.stringify(p).replace(/\"/g,'&quot;')})">Detayları Gör　→</button></div></div>
  </article>`).join('')||'<p>Bu filtrelere uygun ürün bulunamadı.</p>';
+}
+function openDetails(product){
+  const params = new URLSearchParams({
+    id: product.id || product.name || 'product',
+    name: product.name || '',
+    category: product.cat || '',
+    tag: product.tag || '',
+    price: String(product.price || 0),
+    badge: product.badge || '',
+    features: product.features || '',
+    description: product.description || ('\u003c' + (product.name || 'Ürün') + '\u003e için ürün detayları, özellikler ve satın alma seçenekleri.'),
+    image_url: product.image_url || '',
+    download_url: product.download_url || product.file_url || ''
+  });
+  window.location.href = 'detail.html?' + params.toString();
 }
 function filterCategory(cat,el){active=cat;document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderCards()}
 function updatePrice(v){document.getElementById('priceValue').textContent=money(Number(v));renderCards()}
