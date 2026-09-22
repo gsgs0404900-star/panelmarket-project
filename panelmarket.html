@@ -138,6 +138,13 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
   .account-actions{grid-template-columns:1fr}
 }
 
+
+.auth-box{width:min(430px,100%)}
+.auth-box label{user-select:none}
+.auth-box input:focus{border-color:#2d91ff!important;box-shadow:0 0 0 3px #1595ff18}
+#authMessage.ok{background:#0b3a2d;border:1px solid #1c9e78;color:#b9ffe9}
+#authMessage.error{background:#401b23;border:1px solid #a94155;color:#ffd4dc}
+
 </style>
 </head>
 <body>
@@ -152,7 +159,7 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
       <a href="hakkimizda.html">▥ Hakkımızda</a>
       <a href="#destek" onclick="setTimeout(()=>document.getElementById('destek')?.scrollIntoView({behavior:'smooth',block:'start'}),0)">♧ Destek</a>
     </div>
-    <div class="nav-actions"><button class="iconbtn" type="button" onclick="focusSearch()" aria-label="Ara">⌕</button><button class="account" type="button" onclick="window.location.href='hesabim.html'">♙ Hesabım</button></div>
+    <div class="nav-actions"><button class="iconbtn" type="button" onclick="focusSearch()" aria-label="Ara">⌕</button><button class="account" type="button" onclick="openAccount()">♙ Hesabım</button></div>
   </nav>
 
   <section class="hero">
@@ -255,87 +262,69 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
 
 <div class="account-modal" id="accountModal" aria-hidden="true">
   <div class="account-backdrop" onclick="closeAccount()"></div>
-  <div class="account-box" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+
+  <div class="account-box auth-box" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
     <button class="account-close" type="button" onclick="closeAccount()" aria-label="Kapat">×</button>
-    <div class="account-icon">♙</div>
+
+    <div class="account-icon" id="authIcon">♙</div>
     <div class="about-kicker">PANELMARKET HESAP</div>
     <h2 id="accountTitle">Hesabım</h2>
-    <p>Hesap işlemleri için aşağıdaki seçeneklerden birini kullanın.</p>
-    <div class="account-actions">
-      <a href="pages/login.html" class="btn">Giriş Yap</a>
-      <a href="register.html" class="btn alt">Kayıt Ol</a>
+    <p id="authText">Hesap işlemleri için aşağıdaki seçeneklerden birini kullanın.</p>
+
+    <div id="accountHome" class="account-actions">
+      <button type="button" class="btn" onclick="showAuth('login')">Giriş Yap</button>
+      <button type="button" class="btn alt" onclick="showAuth('register')">Kayıt Ol</button>
+    </div>
+
+    <form id="authForm" style="display:none" onsubmit="submitAuth(event)">
+      <label style="display:block;color:#bcd0ea;font-size:13px;margin:0 0 7px;">E-posta</label>
+      <input id="authEmail" type="email" autocomplete="email" required
+        style="width:100%;background:#0a1a31;border:1px solid #254467;color:#eef5ff;border-radius:11px;padding:13px 14px;outline:none;margin-bottom:13px;"
+        placeholder="ornek@mail.com">
+
+      <label style="display:block;color:#bcd0ea;font-size:13px;margin:0 0 7px;">Şifre</label>
+      <input id="authPassword" type="password" minlength="6" autocomplete="current-password" required
+        style="width:100%;background:#0a1a31;border:1px solid #254467;color:#eef5ff;border-radius:11px;padding:13px 14px;outline:none;margin-bottom:13px;"
+        placeholder="En az 6 karakter">
+
+      <div id="registerPasswordWrap" style="display:none">
+        <label style="display:block;color:#bcd0ea;font-size:13px;margin:0 0 7px;">Şifre Tekrar</label>
+        <input id="authPassword2" type="password" minlength="6" autocomplete="new-password"
+          style="width:100%;background:#0a1a31;border:1px solid #254467;color:#eef5ff;border-radius:11px;padding:13px 14px;outline:none;margin-bottom:13px;"
+          placeholder="Şifrenizi tekrar yazın">
+      </div>
+
+      <button id="authSubmit" class="btn" type="submit" style="width:100%;margin:0;">Giriş Yap</button>
+      <button class="details" type="button" onclick="showAuth('home')" style="width:100%;margin-top:10px;">← Hesap seçeneklerine dön</button>
+      <div id="authMessage" style="display:none;margin-top:13px;padding:11px 12px;border-radius:10px;font-size:13px;line-height:1.45;"></div>
+    </form>
+
+    <div id="loggedInBox" style="display:none">
+      <div style="background:#0a1930;border:1px solid #254467;border-radius:14px;padding:14px;margin-bottom:12px;">
+        <div style="color:#91a7c6;font-size:12px;">Giriş yapılan hesap</div>
+        <strong id="loggedInEmail" style="display:block;margin-top:5px;word-break:break-all;"></strong>
+      </div>
+      <button class="btn" type="button" style="width:100%;" onclick="signOutUser()">Çıkış Yap</button>
     </div>
   </div>
 </div>
-
 <script>
 const SUPABASE_URL = 'https://gakvvqcsaoxhbuqvimqe.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_74vcsqJXv7J_P-1hDwGQyg_WQBvIdty';
 
-const fallbackProducts = [
- {name:'Oyun Paneli Pro',cat:'Oyun',price:1250,badge:'Popüler',cls:'',tag:'Oyun Panelleri',features:'Özel Tasarım · Kolay Kurulum · Sınırsız Slot'},
- {name:'E-Ticaret Yönetim Paneli',cat:'E-Ticaret',price:989,badge:'Yeni',cls:'green',tag:'E-Ticaret Panelleri',features:'Stok Yönetimi · Sipariş Takibi · Raporlama'},
- {name:'Hosting Paneli',cat:'Hosting',price:1750,badge:'En Çok Satan',cls:'orange',tag:'Hosting Panelleri',features:'Sunucu Yönetimi · Otomatik Kurulum · 7/24 Destek'},
- {name:'Sosyal Medya Paneli',cat:'Sosyal',price:1150,badge:'Popüler',cls:'',tag:'Sosyal Medya Panelleri',features:'Çoklu Hesap · Planlama · Analiz'},
- {name:'Kurumsal Web Sitesi',cat:'Kurumsal',price:750,badge:'Yeni',cls:'green',tag:'Kurumsal Siteler',features:'Modern Tasarım · SEO Uyumlu · Mobil Uyumlu'},
- {name:'Restoran Web Sitesi',cat:'Restoran',price:680,badge:'Öne Çıkan',cls:'',tag:'Restoran & Cafe',features:'Menü Yönetimi · Rezervasyon · Mobil Uyumlu'},
- {name:'Portföy Web Sitesi',cat:'Portföy',price:620,badge:'Yeni',cls:'green',tag:'Portföy Siteleri',features:'Özel Tasarım · Hızlı Yükleme · SEO Uyumlu'},
- {name:'SaaS Dashboard',cat:'SaaS',price:1450,badge:'En Çok Satan',cls:'orange',tag:'SaaS & Dashboard',features:'Analitik Raporlar · Kullanıcı Yönetimi · Ölçeklenebilir'}
-];
-let products = [...fallbackProducts];
-let active='Tümü';
 
-function normalizeProduct(row){
-  return {
-    name: row.name || row.title || 'İsimsiz Ürün',
-    cat: row.cat || row.category || 'Tümü',
-    price: Number(row.price || 0),
-    badge: row.badge || 'Yeni',
-    cls: row.cls || '',
-    tag: row.tag || row.category || 'Web Paneli',
-    features: row.features || 'Modern Tasarım · Kolay Kurulum · Mobil Uyumlu'
-  };
+const AUTH_STORAGE_KEY = 'panelmarket_session';
+
+function getStoredSession(){
+  try { return JSON.parse(localStorage.getItem(AUTH_STORAGE_KEY) || 'null'); }
+  catch(e){ return null; }
 }
 
-async function loadProductsFromSupabase(){
-  if(!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.startsWith('BURAYA_')) return;
-  try{
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/products?select=*&order=created_at.desc`, {
-      headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` }
-    });
-    if(!response.ok) throw new Error(`Supabase HTTP ${response.status}`);
-    const rows = await response.json();
-    if(Array.isArray(rows) && rows.length){
-      products = rows.map(normalizeProduct);
-      renderCards();
-    }
-  }catch(error){
-    console.warn('Supabase ürünleri yüklenemedi. Yerel örnek ürünler gösteriliyor.', error);
-  }
+function setStoredSession(session){
+  if(session) localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(session));
+  else localStorage.removeItem(AUTH_STORAGE_KEY);
 }
 
-
-function focusSearch(){
-  const search = document.getElementById('search');
-  if(!search) return;
-  search.scrollIntoView({behavior:'smooth', block:'center'});
-  setTimeout(()=>{search.focus(); search.select();}, 350);
-}
-function openAccount(){
-  const modal=document.getElementById('accountModal');
-  if(!modal) return;
-  modal.classList.add('open');
-  modal.setAttribute('aria-hidden','false');
-  document.body.style.overflow='hidden';
-}
-function closeAccount(){
-  const modal=document.getElementById('accountModal');
-  if(!modal) return;
-  modal.classList.remove('open');
-  modal.setAttribute('aria-hidden','true');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAccount();});
 
 function money(n){return n.toLocaleString('tr-TR')+' TL'}
 function renderCards(){
