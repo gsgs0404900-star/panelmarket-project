@@ -1,16 +1,3 @@
 {
-  "rewrites": [
-    {
-      "source": "/login",
-      "destination": "/login.html"
-    },
-    {
-      "source": "/register",
-      "destination": "/register.html"
-    },
-    {
-      "source": "/hesabim",
-      "destination": "/hesabim.html"
-    }
-  ]
+  "version": 2
 }
