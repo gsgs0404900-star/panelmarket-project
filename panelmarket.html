@@ -93,7 +93,25 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
   .hero-art{width:100%;height:150px;margin-top:20px}
   .hero h1{font-size:34px}
   .layout{grid-template-columns:1fr}
-  .sidebar{display:none}
+  .sidebar{
+  display:block;
+  width:100%;
+  order:1;
+}
+
+.content{
+  order:2;
+}
+
+.categories{
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.cat{
+  font-size:13px;
+  padding:10px;
+}
   .toolbar{flex-wrap:wrap}
   .search{width:100%}
   .grid{grid-template-columns:1fr}
