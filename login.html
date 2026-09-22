@@ -4,27 +4,144 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giriş Yap - PanelMarket</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 420px;
+      margin: 20px;
+      padding: 35px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 10px 35px rgba(0,0,0,.10);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      text-align: center;
+      font-size: 28px;
+    }
+
+    .subtitle {
+      margin: 0 0 28px;
+      text-align: center;
+      color: #777;
+    }
+
+    label {
+      display: block;
+      margin: 0 0 7px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      height: 48px;
+      padding: 0 14px;
+      margin-bottom: 18px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #111;
+    }
+
+    button {
+      width: 100%;
+      height: 48px;
+      border: 0;
+      border-radius: 10px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: .9;
+    }
+
+    .links {
+      margin-top: 22px;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    a {
+      color: #111;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back {
+      display: block;
+      margin-top: 10px;
+      color: #777;
+      font-weight: normal;
+    }
+  </style>
 </head>
+
 <body>
 
-  <h1>PanelMarket</h1>
-  <h2>Giriş Yap</h2>
+  <main class="box">
+    <h1>PanelMarket</h1>
+    <p class="subtitle">Giriş Yap</p>
 
-  <form>
-    <input type="email" placeholder="E-posta" required>
-    <br><br>
+    <form id="loginForm">
+      <label for="email">E-posta</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="E-posta adresiniz"
+        autocomplete="email"
+        required
+      >
 
-    <input type="password" placeholder="Şifre" required>
-    <br><br>
+      <label for="password">Şifre</label>
+      <input
+        id="password"
+        type="password"
+        placeholder="Şifreniz"
+        autocomplete="current-password"
+        required
+      >
 
-    <button type="submit">Giriş Yap</button>
-  </form>
+      <button type="submit">Giriş Yap</button>
+    </form>
 
-  <br>
+    <div class="links">
+      Hesabın yok mu?
+      <a href="./register.html">Kayıt Ol</a>
 
-  <a href="./register.html">Kayıt Ol</a>
-  <br>
-  <a href="./index.html">Ana Sayfa</a>
+      <a class="back" href="./index.html">Ana Sayfaya Dön</a>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      alert("Giriş sistemi hazır.");
+    });
+  </script>
 
 </body>
 </html>
