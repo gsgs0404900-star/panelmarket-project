@@ -3430,38 +3430,27 @@ function initEvents(){
     );
 
 
-  /* ACCOUNT */
-
-  <script>
 /* =========================================================
-   PANELMARKET - HESABIM BUTONU
+   ACCOUNT
 ========================================================= */
 
-(function(){
+const accountButton =
+  document.getElementById("accountButton");
 
-  const accountButton =
-    document.getElementById("accountButton");
-
-  if(!accountButton){
-    return;
-  }
-
-  function getAccessToken(){
-
-    return (
-      localStorage.getItem("panelmarket_access_token") ||
-      sessionStorage.getItem("panelmarket_access_token") ||
-      ""
-    );
-
-  }
+if(accountButton){
 
   accountButton.addEventListener(
     "click",
     function(){
 
       const token =
-        getAccessToken();
+        localStorage.getItem(
+          "panelmarket_access_token"
+        ) ||
+        sessionStorage.getItem(
+          "panelmarket_access_token"
+        ) ||
+        "";
 
       if(token){
 
@@ -3478,10 +3467,9 @@ function initEvents(){
     }
   );
 
-})();
+}
 </script>
-
-
+  
   $("accountClose")
     ?.addEventListener(
       "click",
