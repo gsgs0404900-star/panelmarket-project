@@ -70,8 +70,7 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
 .mock-main{background:linear-gradient(145deg,#173e6c,#10223e);border-radius:4px;position:relative}
 .mock-main:after{content:"";position:absolute;left:12px;right:12px;bottom:13px;height:35px;background:linear-gradient(90deg,#278fff 35%,#5b55ff 35% 65%,#23d5a0 65%);opacity:.75;border-radius:4px}
 .badge{position:absolute;right:8px;top:8px;border-radius:20px;padding:5px 9px;font-size:10px;font-weight:800;background:#6d4cff}
-.badge.green{background:#19a982}
-.badge.orange{background:#e58b23}
+.badge.green{background:#19a982}.badge.orange{background:#e58b23}
 .card-body{padding:9px 3px 2px}
 .card h3{font-size:15px;margin:0 0 8px}
 .tag{display:inline-block;font-size:10px;background:#14508c;color:#a8ddff;border-radius:20px;padding:4px 8px;margin-bottom:10px}
@@ -79,75 +78,19 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
 .card-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
 .price{font-size:20px;color:#25a0ff;font-weight:900}
 .details{font-size:11px;padding:9px 12px;border:1px solid #4369ff;border-radius:20px;color:#dfe8ff;background:#0a1731;cursor:pointer}
-@media(max-width:1100px){
-  .navlinks{gap:12px}
-  .hero{padding:30px}
-  .hero-art{width:38%}
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:760px){
-  .container{width:calc(100% - 20px)}
-  .nav{padding:12px;gap:12px}
-  .navlinks{display:none}
-  .hero{padding:25px;display:block}
-  .hero-art{width:100%;height:150px;margin-top:20px}
-  .hero h1{font-size:34px}
-  .layout{grid-template-columns:1fr}
-  .sidebar{display:none}
-  .toolbar{flex-wrap:wrap}
-  .search{width:100%}
-  .grid{grid-template-columns:1fr}
-  .hero .btn{padding:12px 14px}
-}
+@media(max-width:1100px){.navlinks{gap:12px}.hero{padding:30px}.hero-art{width:38%}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.container{width:calc(100% - 20px)}.nav{padding:12px;gap:12px}.navlinks{display:none}.hero{padding:25px;display:block}.hero-art{width:100%;height:150px;margin-top:20px}.hero h1{font-size:34px}.layout{grid-template-columns:1fr}.sidebar{display:none}.toolbar{flex-wrap:wrap}.search{width:100%}.grid{grid-template-columns:1fr}.hero .btn{padding:12px 14px}}
 
-/* PANELMARKET TELEFON GORUNUMU FIX */
-@media(max-width:760px){
-body{overflow-x:hidden}
-.container{width:calc(100% - 20px)!important}
-.nav{position:relative;top:0;margin:10px 0;padding:12px;border-radius:18px}
-.navlinks{display:none!important}
-.logo{font-size:21px}
-.hero{padding:20px;border-radius:18px}
-.hero-art{display:none!important}
-.hero .btn{width:100%;margin:6px 0!important}
-#temalar{padding:18px!important}
-#temalar>div:last-child{grid-template-columns:1fr!important}
-.layout{display:flex!important;flex-direction:column!important;gap:14px!important}
-.sidebar{display:block!important;order:1;padding:14px}
-.categories{display:flex!important;flex-direction:column!important}
-.cat{background:#0a1930;border:1px solid #27456f;padding:14px;border-radius:14px}
-.range{display:block!important;margin-top:20px!important}
-.range input{display:block!important;width:100%!important}
-.range-values{display:flex!important;color:#fff!important;font-size:14px!important}
-.content{order:2}
-.toolbar{display:flex!important;flex-direction:column!important}
-.search,select{width:100%!important}
-.grid{grid-template-columns:1fr!important}
-.card{width:100%!important}
-.preview{height:180px!important}
-.card h3{font-size:18px}
-.price{font-size:22px}
-.details{padding:10px 14px}
-}
-
-/* MOBILE SIDEBAR FIX - Kategori ve fiyat görünürlüğü */
-@media(max-width:760px){
-  .sidebar{display:block!important;visibility:visible!important;height:auto!important;opacity:1!important;}
-  .categories{display:grid!important;grid-template-columns:1fr!important;}
-  .cat{display:flex!important;}
-  .range{display:block!important;}
-  .range input{display:block!important;visibility:visible!important;}
-  .range-values{display:flex!important;justify-content:space-between!important;}
-}
+.auth-overlay{display:none;position:fixed;inset:0;background:#0009;z-index:999;align-items:center;justify-content:center}
+.auth-box{width:min(380px,90%);background:#071426;border:1px solid #27456f;border-radius:20px;padding:25px;text-align:center;box-shadow:0 20px 60px #000}
+.auth-box h2{margin:0 0 12px}.auth-box p{color:#91a7c6}
+.auth-btn{display:block;width:100%;margin:10px 0;padding:13px;border-radius:12px;border:1px solid #2775ff;background:#138fff;color:white;font-weight:800;cursor:pointer}
 </style>
 </head>
-
 <body>
 <div class="container">
-
   <nav class="nav">
     <div class="logo"><span>◢</span> Panel<i>Market</i></div>
-
     <div class="navlinks">
       <a class="active" href="#">⌂ Anasayfa</a>
       <a href="#paneller">▦ Paneller⌄</a>
@@ -156,815 +99,131 @@ body{overflow-x:hidden}
       <a href="#">▥ Hakkımızda</a>
       <a href="support.html">♧ Destek</a>
     </div>
-
-    <div class="nav-actions">
-      <button class="iconbtn">⌕</button>
-      <button class="account">♙ Hesabım⌄</button>
-    </div>
+    <div class="nav-actions"><button class="iconbtn">⌕</button><button class="account" onclick="openAccount()">♙ Hesabım</button></div>
   </nav>
 
   <section class="hero">
     <div class="hero-content">
       <div class="pills">⚡ Hızlı Teslimat　•　🛡 Güvenli Alışveriş</div>
-
       <h1>Profesyonel <span>Web Panelleri</span></h1>
-
-      <p>
-        Hazır yönetim panelleri ve modern web site temaları ile
-        projenizi bir üst seviyeye taşıyın.
-      </p>
-
-      <button class="btn"
-        onclick="document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">
-        ▦ Panelleri İncele
-      </button>
-
-      <button class="btn alt"
-        onclick="document.querySelector('#temalar').scrollIntoView({behavior:'smooth'})">
-        ✿ Tema Paketleri
-      </button>
+      <p>Hazır yönetim panelleri ve modern web site temaları ile projenizi bir üst seviyeye taşıyın.</p>
+      <button class="btn" onclick="document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">▦ Panelleri İncele</button>
+      <button class="btn alt" onclick="alert('Tema paketleri yakında listelenecek.')">✿ Tema Paketleri</button>
     </div>
-
     <div class="hero-art">
-      <div class="screen back">
-        <div class="dots"><i></i><i></i><i></i></div>
-        <h3>Web Store</h3>
-        <div class="chart">
-          <b style="height:35%"></b>
-          <b style="height:65%"></b>
-          <b style="height:45%"></b>
-          <b style="height:90%"></b>
-          <b style="height:70%"></b>
-        </div>
-      </div>
-
-      <div class="screen main">
-        <div class="dots"><i></i><i></i><i></i></div>
-        <h3>Dashboard Analytics</h3>
-        <div class="chart">
-          <b style="height:30%"></b>
-          <b style="height:55%"></b>
-          <b style="height:45%"></b>
-          <b style="height:82%"></b>
-          <b style="height:65%"></b>
-          <b style="height:100%"></b>
-          <b style="height:76%"></b>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="temalar"
-    style="margin:26px 0 0;border:1px solid #27456f;background:linear-gradient(150deg,#07172c,#041022);border-radius:22px;padding:26px;box-shadow:0 14px 45px #0003;scroll-margin-top:110px;">
-
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px;">
-      <div>
-        <div style="color:#8dbaff;font-size:12px;font-weight:800;letter-spacing:1px;">
-          ✿ TASARIM KOLEKSİYONU
-        </div>
-
-        <h2 style="margin:6px 0 0;font-size:28px;">
-          Tema Paketleri
-        </h2>
-
-        <p style="margin:8px 0 0;color:#91a7c6;">
-          Modern, kullanıma hazır ve mobil uyumlu tema paketlerini keşfedin.
-        </p>
-      </div>
-
-      <button class="btn alt"
-        onclick="document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">
-        Tüm Ürünlere Git →
-      </button>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;">
-
-      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;">
-        <div style="font-size:28px;">◈</div>
-        <h3 style="margin:12px 0 8px;">Kurumsal Tema</h3>
-        <p style="color:#91a7c6;font-size:13px;line-height:1.6;">
-          Profesyonel şirket ve marka siteleri için.
-        </p>
-        <button class="details"
-          onclick="document.querySelector('#search').value='Kurumsal';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">
-          İncele →
-        </button>
-      </div>
-
-      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;">
-        <div style="font-size:28px;">◇</div>
-        <h3 style="margin:12px 0 8px;">E-Ticaret Tema</h3>
-        <p style="color:#91a7c6;font-size:13px;line-height:1.6;">
-          Ürün ve mağaza projeleri için modern tasarım.
-        </p>
-        <button class="details"
-          onclick="document.querySelector('#search').value='E-Ticaret';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">
-          İncele →
-        </button>
-      </div>
-
-      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;">
-        <div style="font-size:28px;">▧</div>
-        <h3 style="margin:12px 0 8px;">Portföy Tema</h3>
-        <p style="color:#91a7c6;font-size:13px;line-height:1.6;">
-          Kişisel çalışmalar ve yaratıcı projeler için.
-        </p>
-        <button class="details"
-          onclick="document.querySelector('#search').value='Portföy';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">
-          İncele →
-        </button>
-      </div>
-
+      <div class="screen back"><div class="dots"><i></i><i></i><i></i></div><h3>Web Store</h3><div class="chart"><b style="height:35%"></b><b style="height:65%"></b><b style="height:45%"></b><b style="height:90%"></b><b style="height:70%"></b></div></div>
+      <div class="screen main"><div class="dots"><i></i><i></i><i></i></div><h3>Dashboard Analytics</h3><div class="chart"><b style="height:30%"></b><b style="height:55%"></b><b style="height:45%"></b><b style="height:82%"></b><b style="height:65%"></b><b style="height:100%"></b><b style="height:76%"></b></div></div>
     </div>
   </section>
 
   <section class="layout" id="paneller">
-
     <aside class="sidebar">
-
       <div class="side-title">▦　Kategoriler</div>
-
       <div class="categories">
-
-        <div class="cat active" onclick="filterCategory('Tümü',this)">
-          ◈ Tüm Paneller <span id="count-Tümü">0</span>
-        </div>
-
-        <div class="cat" onclick="filterCategory('Oyun',this)">
-          ◉ Oyun Panelleri <span id="count-Oyun">0</span>
-        </div>
-
-        <div class="cat" onclick="filterCategory('E-Ticaret',this)">
-          ◇ E-Ticaret Panelleri <span id="count-E-Ticaret">0</span>
-        </div>
-
-        <div class="cat" onclick="filterCategory('Hosting',this)">
-          ▤ Hosting Panelleri <span id="count-Hosting">0</span>
-        </div>
-
-        <div class="cat" onclick="filterCategory('Sosyal',this)">
-          ♧ Sosyal Medya <span id="count-Sosyal">0</span>
-        </div>
-
-        <div class="cat" onclick="filterCategory('Kurumsal',this)">
-          ▣ Kurumsal Siteler <span id="count-Kurumsal">0</span>
-        </div>
-
-        <div class="cat" onclick="filterCategory('Restoran',this)">
-          ▥ Restoran & Cafe <span id="count-Restoran">0</span>
-        </div>
-
-        <div class="cat" onclick="filterCategory('Portföy',this)">
-          ▧ Portföy Siteleri <span id="count-Portföy">0</span>
-        </div>
-
-        <div class="cat" onclick="filterCategory('SaaS',this)">
-          ▨ SaaS & Dashboard <span id="count-SaaS">0</span>
-        </div>
-
+        <div class="cat active" onclick="filterCategory('Tümü',this)">◈ Tüm Paneller <span>42</span></div>
+        <div class="cat" onclick="filterCategory('Oyun',this)">◉ Oyun Panelleri <span>8</span></div>
+        <div class="cat" onclick="filterCategory('E-Ticaret',this)">◇ E-Ticaret Panelleri <span>7</span></div>
+        <div class="cat" onclick="filterCategory('Hosting',this)">▤ Hosting Panelleri <span>6</span></div>
+        <div class="cat" onclick="filterCategory('Sosyal',this)">♧ Sosyal Medya <span>5</span></div>
+        <div class="cat" onclick="filterCategory('Kurumsal',this)">▣ Kurumsal Siteler <span>6</span></div>
+        <div class="cat" onclick="filterCategory('Restoran',this)">▥ Restoran & Cafe <span>4</span></div>
+        <div class="cat" onclick="filterCategory('Portföy',this)">▧ Portföy Siteleri <span>4</span></div>
+        <div class="cat" onclick="filterCategory('SaaS',this)">▨ SaaS & Dashboard <span>2</span></div>
       </div>
-
-      <div class="range" id="fiyatlar">
-
-        <div class="side-title">▤　Fiyat Aralığı</div>
-
-        <input
-          type="range"
-          min="50"
-          max="5000"
-          value="5000"
-          id="priceRange"
-          oninput="updatePrice(this.value)"
-        >
-
-        <div class="range-values">
-          <span>50 TL</span>
-          <span id="priceValue">5.000 TL</span>
-        </div>
-
-      </div>
-
+      <div class="range" id="fiyatlar"><div class="side-title">▤　Fiyat Aralığı</div><input type="range" min="50" max="5000" value="5000" id="priceRange" oninput="updatePrice(this.value)"><div class="range-values"><span>50 TL</span><span id="priceValue">5.000 TL</span></div></div>
     </aside>
 
     <main class="content">
-
       <div class="toolbar">
-
-        <select id="sort" onchange="sortCards()">
-          <option value="new">☷ En Yeniler</option>
-          <option value="low">Fiyat: Artan</option>
-          <option value="high">Fiyat: Azalan</option>
-        </select>
-
-        <input
-          class="search"
-          id="search"
-          oninput="renderCards()"
-          placeholder="⌕ Panel veya tema ara..."
-        >
-
+        <select id="sort" onchange="sortCards()"><option value="new">☷ En Yeniler</option><option value="low">Fiyat: Artan</option><option value="high">Fiyat: Azalan</option></select>
+        <input class="search" id="search" oninput="renderCards()" placeholder="⌕ Panel veya tema ara...">
       </div>
-
       <div class="grid" id="cardGrid"></div>
-
     </main>
-
   </section>
-
 </div>
 
+
+<div class="auth-overlay" id="authOverlay">
+ <div class="auth-box">
+  <h2>Hesabım</h2>
+  <p>Devam etmek için giriş yapın veya kayıt olun.</p>
+  <button class="auth-btn" onclick="location.href='login.html'">Giriş Yap</button>
+  <button class="auth-btn" onclick="location.href='register.html'">Kayıt Ol</button>
+ </div>
+</div>
 <script>
 const SUPABASE_URL = 'https://gakvvqcsaoxhbuqvimqe.supabase.co';
-
-const SUPABASE_ANON_KEY =
-  'sb_publishable_74vcsqJXv7J_P-1hDwGQyg_WQBvIdty';
-
-
-/* =========================
-   YEDEK ÜRÜNLER
-========================= */
+const SUPABASE_ANON_KEY = 'sb_publishable_74vcsqJXv7J_P-1hDwGQyg_WQBvIdty';
 
 const fallbackProducts = [
-  {
-    name:'Oyun Paneli Pro',
-    cat:'Oyun',
-    price:1250,
-    badge:'Popüler',
-    cls:'',
-    tag:'Oyun Panelleri',
-    features:'Özel Tasarım · Kolay Kurulum · Sınırsız Slot'
-  },
-
-  {
-    name:'E-Ticaret Yönetim Paneli',
-    cat:'E-Ticaret',
-    price:989,
-    badge:'Yeni',
-    cls:'green',
-    tag:'E-Ticaret Panelleri',
-    features:'Stok Yönetimi · Sipariş Takibi · Raporlama'
-  },
-
-  {
-    name:'Hosting Paneli',
-    cat:'Hosting',
-    price:1750,
-    badge:'En Çok Satan',
-    cls:'orange',
-    tag:'Hosting Panelleri',
-    features:'Sunucu Yönetimi · Otomatik Kurulum · 7/24 Destek'
-  },
-
-  {
-    name:'Sosyal Medya Paneli',
-    cat:'Sosyal',
-    price:1150,
-    badge:'Popüler',
-    cls:'',
-    tag:'Sosyal Medya Panelleri',
-    features:'Çoklu Hesap · Planlama · Analiz'
-  },
-
-  {
-    name:'Kurumsal Web Sitesi',
-    cat:'Kurumsal',
-    price:750,
-    badge:'Yeni',
-    cls:'green',
-    tag:'Kurumsal Siteler',
-    features:'Modern Tasarım · SEO Uyumlu · Mobil Uyumlu'
-  },
-
-  {
-    name:'Restoran Web Sitesi',
-    cat:'Restoran',
-    price:680,
-    badge:'Öne Çıkan',
-    cls:'',
-    tag:'Restoran & Cafe',
-    features:'Menü Yönetimi · Rezervasyon · Mobil Uyumlu'
-  },
-
-  {
-    name:'Portföy Web Sitesi',
-    cat:'Portföy',
-    price:620,
-    badge:'Yeni',
-    cls:'green',
-    tag:'Portföy Siteleri',
-    features:'Özel Tasarım · Hızlı Yükleme · SEO Uyumlu'
-  },
-
-  {
-    name:'SaaS Dashboard',
-    cat:'SaaS',
-    price:1450,
-    badge:'En Çok Satan',
-    cls:'orange',
-    tag:'SaaS & Dashboard',
-    features:'Analitik Raporlar · Kullanıcı Yönetimi · Ölçeklenebilir'
-  }
+ {name:'Oyun Paneli Pro',cat:'Oyun',price:1250,badge:'Popüler',cls:'',tag:'Oyun Panelleri',features:'Özel Tasarım · Kolay Kurulum · Sınırsız Slot'},
+ {name:'E-Ticaret Yönetim Paneli',cat:'E-Ticaret',price:989,badge:'Yeni',cls:'green',tag:'E-Ticaret Panelleri',features:'Stok Yönetimi · Sipariş Takibi · Raporlama'},
+ {name:'Hosting Paneli',cat:'Hosting',price:1750,badge:'En Çok Satan',cls:'orange',tag:'Hosting Panelleri',features:'Sunucu Yönetimi · Otomatik Kurulum · 7/24 Destek'},
+ {name:'Sosyal Medya Paneli',cat:'Sosyal',price:1150,badge:'Popüler',cls:'',tag:'Sosyal Medya Panelleri',features:'Çoklu Hesap · Planlama · Analiz'},
+ {name:'Kurumsal Web Sitesi',cat:'Kurumsal',price:750,badge:'Yeni',cls:'green',tag:'Kurumsal Siteler',features:'Modern Tasarım · SEO Uyumlu · Mobil Uyumlu'},
+ {name:'Restoran Web Sitesi',cat:'Restoran',price:680,badge:'Öne Çıkan',cls:'',tag:'Restoran & Cafe',features:'Menü Yönetimi · Rezervasyon · Mobil Uyumlu'},
+ {name:'Portföy Web Sitesi',cat:'Portföy',price:620,badge:'Yeni',cls:'green',tag:'Portföy Siteleri',features:'Özel Tasarım · Hızlı Yükleme · SEO Uyumlu'},
+ {name:'SaaS Dashboard',cat:'SaaS',price:1450,badge:'En Çok Satan',cls:'orange',tag:'SaaS & Dashboard',features:'Analitik Raporlar · Kullanıcı Yönetimi · Ölçeklenebilir'}
 ];
-
-
 let products = [...fallbackProducts];
-let active = 'Tümü';
-
-
-/* =========================
-   ÜRÜN NORMALİZASYONU
-========================= */
+let active='Tümü';
 
 function normalizeProduct(row){
-
   return {
-    id: row.id || '',
     name: row.name || row.title || 'İsimsiz Ürün',
-
-    cat:
-      row.cat ||
-      row.category ||
-      'Tümü',
-
-    price:
-      Number(row.price || 0),
-
-    badge:
-      row.badge ||
-      'Yeni',
-
-    cls:
-      row.cls ||
-      '',
-
-    tag:
-      row.tag ||
-      row.category ||
-      'Web Paneli',
-
-    features:
-      row.features ||
-      'Modern Tasarım · Kolay Kurulum · Mobil Uyumlu',
-
-    description:
-      row.description ||
-      '',
-
-    image_url:
-      row.image_url ||
-      '',
-
-    download_url:
-      row.download_url ||
-      row.file_url ||
-      '',
-
-    created_at:
-      row.created_at ||
-      ''
+    cat: row.cat || row.category || 'Tümü',
+    price: Number(row.price || 0),
+    badge: row.badge || 'Yeni',
+    cls: row.cls || '',
+    tag: row.tag || row.category || 'Web Paneli',
+    features: row.features || 'Modern Tasarım · Kolay Kurulum · Mobil Uyumlu'
   };
 }
 
-
-/* =========================
-   KATEGORİ SAYILARINI
-   OTOMATİK HESAPLA
-========================= */
-
-function updateCategoryCounts(){
-
-  const categories = [
-    'Oyun',
-    'E-Ticaret',
-    'Hosting',
-    'Sosyal',
-    'Kurumsal',
-    'Restoran',
-    'Portföy',
-    'SaaS'
-  ];
-
-
-  /* Tüm ürün sayısı */
-
-  const totalEl =
-    document.getElementById('count-Tümü');
-
-  if(totalEl){
-    totalEl.textContent =
-      products.length;
-  }
-
-
-  /* Kategori ürün sayıları */
-
-  categories.forEach(function(cat){
-
-    const count =
-      products.filter(function(product){
-
-        return product.cat === cat;
-
-      }).length;
-
-
-    const el =
-      document.getElementById(`count-${cat}`);
-
-
-    if(el){
-      el.textContent = count;
-    }
-
-  });
-
-}
-
-
-/* =========================
-   SUPABASE ÜRÜNLERİNİ YÜKLE
-========================= */
-
 async function loadProductsFromSupabase(){
-
-  if(
-    !SUPABASE_ANON_KEY ||
-    SUPABASE_ANON_KEY.startsWith('BURAYA_')
-  ){
-    return;
-  }
-
-
+  if(!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.startsWith('BURAYA_')) return;
   try{
-
-    const response =
-      await fetch(
-        `${SUPABASE_URL}/rest/v1/products?select=*&order=created_at.desc`,
-        {
-          headers:{
-            apikey:SUPABASE_ANON_KEY,
-
-            Authorization:
-              `Bearer ${SUPABASE_ANON_KEY}`
-          }
-        }
-      );
-
-
-    if(!response.ok){
-
-      throw new Error(
-        `Supabase HTTP ${response.status}`
-      );
-
-    }
-
-
-    const rows =
-      await response.json();
-
-
-    /*
-      Supabase'de ürün varsa
-      gerçek ürünleri kullan.
-    */
-
-    if(Array.isArray(rows)){
-
-      products =
-        rows.map(normalizeProduct);
-
-
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/products?select=*&order=created_at.desc`, {
+      headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` }
+    });
+    if(!response.ok) throw new Error(`Supabase HTTP ${response.status}`);
+    const rows = await response.json();
+    if(Array.isArray(rows) && rows.length){
+      products = rows.map(normalizeProduct);
       renderCards();
-
     }
-
   }catch(error){
-
-    console.warn(
-      'Supabase ürünleri yüklenemedi. Yerel ürünler gösteriliyor.',
-      error
-    );
-
-    /*
-      Hata durumunda fallbackProducts
-      kullanılmaya devam eder.
-    */
-
-    products =
-      [...fallbackProducts];
-
-    renderCards();
-
+    console.warn('Supabase ürünleri yüklenemedi. Yerel örnek ürünler gösteriliyor.', error);
   }
-
 }
 
-
-/* =========================
-   PARA FORMATLAMA
-========================= */
-
-function money(n){
-
-  return Number(n || 0)
-    .toLocaleString('tr-TR') +
-    ' TL';
-
+function openAccount(){
+ const overlay=document.getElementById('authOverlay');
+ overlay.style.display='flex';
 }
-
-
-/* =========================
-   ÜRÜNLERİ RENDER ET
-========================= */
-
+document.getElementById('authOverlay')?.addEventListener('click',e=>{
+ if(e.target.id==='authOverlay') e.target.style.display='none';
+});
+function money(n){return n.toLocaleString('tr-TR')+' TL'}
 function renderCards(){
-
-  /*
-    HER RENDER'DA KATEGORİ
-    SAYILARINI GÜNCELLE
-  */
-
-  updateCategoryCounts();
-
-
-  const searchInput =
-    document.getElementById('search');
-
-  const priceInput =
-    document.getElementById('priceRange');
-
-  const sortInput =
-    document.getElementById('sort');
-
-
-  const q =
-    searchInput.value
-      .toLowerCase()
-      .trim();
-
-
-  const max =
-    Number(priceInput.value);
-
-
-  let list =
-    products.filter(function(p){
-
-      const categoryMatch =
-        active === 'Tümü' ||
-        p.cat === active;
-
-
-      const priceMatch =
-        p.price <= max;
-
-
-      const searchMatch =
-        `${p.name} ${p.cat} ${p.tag}`
-          .toLowerCase()
-          .includes(q);
-
-
-      return(
-        categoryMatch &&
-        priceMatch &&
-        searchMatch
-      );
-
-    });
-
-
-  const sort =
-    sortInput.value;
-
-
-  if(sort === 'low'){
-
-    list.sort(function(a,b){
-
-      return a.price - b.price;
-
-    });
-
-  }
-
-
-  if(sort === 'high'){
-
-    list.sort(function(a,b){
-
-      return b.price - a.price;
-
-    });
-
-  }
-
-
-  document.getElementById('cardGrid').innerHTML =
-
-    list.map(function(p){
-
-      return `
-        <article class="card">
-
-          <div class="preview">
-
-            <span class="badge ${p.cls}">
-              ${p.badge}
-            </span>
-
-            <div class="mock-window">
-
-              <div class="mock-top"></div>
-
-              <div class="mock-body">
-
-                <div class="mock-side"></div>
-
-                <div class="mock-main"></div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="card-body">
-
-            <h3>
-              ${p.name}
-            </h3>
-
-
-            <span class="tag">
-              ${p.tag}
-            </span>
-
-
-            <div class="features">
-              ${p.features}
-            </div>
-
-
-            <div class="card-bottom">
-
-              <div class="price">
-                ${money(p.price)}
-              </div>
-
-
-              <button
-                class="details"
-                onclick='openDetails(${JSON.stringify(p).replace(/'/g,"&#39;")})'
-              >
-                Detayları Gör　→
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
-      `;
-
-    }).join('')
-
-    ||
-
-    '<p>Bu filtrelere uygun ürün bulunamadı.</p>';
-
+ const q=document.getElementById('search').value.toLowerCase();
+ const max=Number(document.getElementById('priceRange').value);
+ let list=products.filter(p=>(active==='Tümü'||p.cat===active)&&p.price<=max&&(`${p.name} ${p.cat} ${p.tag}`).toLowerCase().includes(q));
+ const sort=document.getElementById('sort').value;
+ if(sort==='low')list.sort((a,b)=>a.price-b.price);
+ if(sort==='high')list.sort((a,b)=>b.price-a.price);
+ document.getElementById('cardGrid').innerHTML=list.map(p=>`
+ <article class="card">
+  <div class="preview"><span class="badge ${p.cls}">${p.badge}</span><div class="mock-window"><div class="mock-top"></div><div class="mock-body"><div class="mock-side"></div><div class="mock-main"></div></div></div></div>
+  <div class="card-body"><h3>${p.name}</h3><span class="tag">${p.tag}</span><div class="features">${p.features}</div><div class="card-bottom"><div class="price">${money(p.price)}</div><button class="details" onclick="alert('${p.name} detayları yakında eklenecek.')">Detayları Gör　→</button></div></div>
+ </article>`).join('')||'<p>Bu filtrelere uygun ürün bulunamadı.</p>';
 }
-
-
-/* =========================
-   DETAY SAYFASI
-========================= */
-
-function openDetails(product){
-
-  const params =
-    new URLSearchParams({
-
-      id:
-        product.id ||
-        product.name ||
-        'product',
-
-      name:
-        product.name ||
-        '',
-
-      category:
-        product.cat ||
-        '',
-
-      tag:
-        product.tag ||
-        '',
-
-      price:
-        String(product.price || 0),
-
-      badge:
-        product.badge ||
-        '',
-
-      features:
-        product.features ||
-        '',
-
-      description:
-        product.description ||
-        (
-          '<' +
-          (product.name || 'Ürün') +
-          '> için ürün detayları, özellikler ve satın alma seçenekleri.'
-        ),
-
-      image_url:
-        product.image_url ||
-        '',
-
-      download_url:
-        product.download_url ||
-        product.file_url ||
-        ''
-
-    });
-
-
-  window.location.href =
-    'detail.html?' +
-    params.toString();
-
-}
-
-
-/* =========================
-   KATEGORİ FİLTRESİ
-========================= */
-
-function filterCategory(cat,el){
-
-  active = cat;
-
-
-  document
-    .querySelectorAll('.cat')
-    .forEach(function(x){
-
-      x.classList.remove('active');
-
-    });
-
-
-  el.classList.add('active');
-
-
-  renderCards();
-
-}
-
-
-/* =========================
-   FİYAT FİLTRESİ
-========================= */
-
-function updatePrice(v){
-
-  document.getElementById('priceValue')
-    .textContent =
-    money(Number(v));
-
-
-  renderCards();
-
-}
-
-
-/* =========================
-   SIRALAMA
-========================= */
-
-function sortCards(){
-
-  renderCards();
-
-}
-
-
-/* =========================
-   BAŞLANGIÇ
-========================= */
-
+function filterCategory(cat,el){active=cat;document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderCards()}
+function updatePrice(v){document.getElementById('priceValue').textContent=money(Number(v));renderCards()}
+function sortCards(){renderCards()}
 renderCards();
-
 loadProductsFromSupabase();
-
 </script>
-
 </body>
 </html>
