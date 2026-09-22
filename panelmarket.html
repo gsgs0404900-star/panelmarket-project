@@ -79,189 +79,180 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
 .price{font-size:20px;color:#25a0ff;font-weight:900}
 .details{font-size:11px;padding:9px 12px;border:1px solid #4369ff;border-radius:20px;color:#dfe8ff;background:#0a1731;cursor:pointer}
   
-  /* MOBİL KATEGORİLER SABİT GÖRÜNÜR */
-@media(max-width:760px){
+ @media(max-width:760px){
 
-.layout{
-    display:flex !important;
-    flex-direction:column !important;
+body{
+ overflow-x:hidden;
 }
-
-.sidebar{
-    display:block !important;
-    visibility:visible !important;
-    opacity:1 !important;
-    height:auto !important;
-    width:100% !important;
-    order:1 !important;
-}
-
-.categories{
-    display:grid !important;
-    grid-template-columns:1fr !important;
-}
-
-.cat{
-    display:flex !important;
-    justify-content:space-between !important;
-}
-
-.range{
-    display:block !important;
-}
-
-.content{
-    order:2 !important;
-}
-
-}
-  
-@media(max-width:760px){
 
 .container{
  width:calc(100% - 20px);
 }
 
+/* ÜST MENÜ */
+.nav{
+ margin-top:10px;
+ padding:12px;
+ border-radius:18px;
+ display:flex;
+ justify-content:space-between;
+}
+
+.logo{
+ font-size:22px;
+}
+
+.nav-actions{
+ gap:6px;
+}
+
+.iconbtn{
+ padding:10px 12px;
+}
+
+.account{
+ padding:10px 12px;
+ font-size:13px;
+}
+
+/* HERO */
+.hero{
+ padding:22px;
+ display:block;
+ border-radius:18px;
+}
+
+.hero h1{
+ font-size:34px;
+}
+
+.hero p{
+ font-size:15px;
+}
+
+.hero-art{
+ display:none;
+}
+
+.hero .btn{
+ width:100%;
+ margin:6px 0;
+}
+
+
+/* TEMA PAKETLERİ */
+#temalar{
+ padding:18px!important;
+}
+
+#temalar h2{
+ font-size:26px!important;
+}
+
+#temalar > div:last-child{
+ grid-template-columns:1fr!important;
+}
+
+
+/* ANA ALAN */
 .layout{
  display:flex;
  flex-direction:column;
- gap:15px;
+ margin-top:20px;
 }
 
-/* TELEFONDA KATEGORİLER */
+
+/* KATEGORİLER TELEFONDA GÖRÜNSÜN */
 .sidebar{
- display:block !important;
+ display:block!important;
  width:100%;
+ padding:15px;
  order:1;
- padding:16px;
 }
 
-/* KATEGORİ BAŞLIĞI */
 .side-title{
- font-size:18px;
- margin-bottom:15px;
+ font-size:17px;
 }
 
-/* KATEGORİ LİSTESİ */
 .categories{
- display:flex;
- flex-direction:column;
+ display:grid;
+ grid-template-columns:1fr;
  gap:10px;
 }
 
+
 .cat{
- display:flex;
- width:100%;
+ background:#0a1930;
+ border:1px solid #27456f;
  padding:15px;
+ border-radius:14px;
  font-size:15px;
- background:#07172c;
- border:1px solid #183457;
 }
 
-/* SAYILAR */
-.cat span{
- margin-left:auto;
-}
 
 /* FİYAT */
 .range{
- display:block !important;
  margin-top:20px;
- padding-top:20px;
 }
+
+.range-values{
+ font-size:13px;
+}
+
 
 /* ÜRÜNLER */
 .content{
  order:2;
- width:100%;
 }
 
 .toolbar{
- width:100%;
+ display:flex;
+ flex-direction:column;
 }
 
 .search{
  width:100%;
 }
 
+
 .grid{
- grid-template-columns:1fr;
+ grid-template-columns:1fr!important;
+ gap:14px;
 }
 
-}
-  @media(max-width:760px){
 
-.container{
-  width:calc(100% - 20px);
+.card{
+ width:100%;
 }
 
-.nav{
-  padding:12px;
-  gap:12px;
+
+.preview{
+ height:180px;
 }
 
-.navlinks{
-  display:none;
+
+.card h3{
+ font-size:18px;
 }
 
-.hero{
-  padding:25px;
-  display:block;
+
+.price{
+ font-size:22px;
 }
 
-.hero-art{
-  width:100%;
-  height:150px;
-  margin-top:20px;
+
+.details{
+ padding:10px 14px;
 }
 
-.hero h1{
-  font-size:34px;
-}
 
+/* ALT BOŞLUK */
 .layout{
-  grid-template-columns:1fr;
-}
-
-/* TELEFONDA KATEGORİLER GİZLENMESİN */
-.sidebar{
-  display:block;
-  width:100%;
-  order:1;
-}
-
-.content{
-  order:2;
-}
-
-.categories{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:10px;
-}
-
-.cat{
-  padding:14px;
-  font-size:15px;
-}
-
-.toolbar{
-  flex-wrap:wrap;
-}
-
-.search{
-  width:100%;
-}
-
-.grid{
-  grid-template-columns:1fr;
-}
-
-.hero .btn{
-  padding:12px 14px;
+ padding-bottom:40px;
 }
 
 }
+  
 </style>
 </head>
 <body>
