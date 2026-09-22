@@ -4,82 +4,512 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PanelMarket - Web Panel ve Tema Satışı</title>
-<!-- Supabase bağlantısı için script bölümündeki SUPABASE_ANON_KEY alanını doldurun. -->
+
 <style>
 :root{
-  --bg:#020711;--panel:#071426;--panel2:#0a1a31;--line:#183457;
-  --text:#eef5ff;--muted:#91a7c6;--blue:#1595ff;--purple:#8056ff;
-  --green:#23d5a0;--orange:#ffad39;
+  --bg:#020711;
+  --panel:#071426;
+  --panel2:#0a1a31;
+  --line:#183457;
+  --text:#eef5ff;
+  --muted:#91a7c6;
+  --blue:#1595ff;
+  --purple:#8056ff;
+  --green:#23d5a0;
+  --orange:#ffad39;
 }
+
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 50% -10%,#102d57 0,#020711 48%);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
-a{text-decoration:none;color:inherit}
-button,input,select{font:inherit}
-.container{width:min(1540px,calc(100% - 42px));margin:auto}
-.nav{margin:18px auto 0;border:1px solid #27456f;background:rgba(5,16,34,.92);border-radius:22px;display:flex;align-items:center;gap:28px;padding:13px 24px;box-shadow:0 12px 45px #0006;position:sticky;top:12px;z-index:5;backdrop-filter:blur(16px)}
-.logo{font-size:27px;font-weight:900;letter-spacing:-1.4px;white-space:nowrap}
-.logo span{color:#42aaff}
-.logo i{font-style:normal;color:#fff}
-.navlinks{display:flex;align-items:center;gap:26px;margin-left:auto}
-.navlinks a{font-size:14px;color:#b8c9e3}
-.navlinks a.active{color:#fff;border-bottom:2px solid var(--blue);padding-bottom:17px;margin-bottom:-17px}
-.nav-actions{display:flex;gap:10px;align-items:center}
-.iconbtn,.account{background:#0a1930;border:1px solid #213b60;color:#dceaff;border-radius:13px;padding:11px 14px}
-.hero{margin-top:18px;border:1px solid #16477d;border-radius:20px;min-height:275px;padding:36px 85px;display:flex;align-items:center;justify-content:space-between;overflow:hidden;position:relative;background:linear-gradient(115deg,#06152d,#09204a 55%,#07152b)}
-.hero:before{content:"";position:absolute;inset:-80px 35% -100px -10%;background:radial-gradient(ellipse,#1168d766,transparent 68%);pointer-events:none}
-.hero-content{position:relative;z-index:1;max-width:650px}
-.pills{display:flex;gap:14px;color:#b9d4f8;font-size:13px;margin-bottom:18px}
-h1{font-size:48px;line-height:1.05;margin:0 0 18px;letter-spacing:-2px}
-h1 span{color:#259eff}
-.hero p{color:#b4c7e3;font-size:17px;line-height:1.6;margin:0 0 22px}
-.btn{border:1px solid #2775ff;background:linear-gradient(135deg,#138fff,#2365ff);color:white;padding:14px 22px;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px #006eff30}
-.btn.alt{background:#10152e;border-color:#8751ff;margin-left:10px}
-.hero-art{width:43%;height:220px;position:relative;display:flex;align-items:center;justify-content:center}
-.screen{border:2px solid #345e9b;border-radius:12px;background:linear-gradient(145deg,#0b2448,#071021);box-shadow:0 0 45px #126eff55;position:absolute;padding:18px}
-.screen.main{width:330px;height:190px;transform:rotate(-3deg);z-index:2}
-.screen.back{width:230px;height:145px;right:0;transform:rotate(8deg);opacity:.8}
-.screen h3{font-size:13px;margin:0 0 16px}
-.chart{height:75px;display:flex;align-items:end;gap:7px}
-.chart b{display:block;width:18px;border-radius:4px 4px 0 0;background:linear-gradient(#5f6dff,#159cff)}
-.dots{display:flex;gap:7px;margin-bottom:14px}
-.dots i{width:7px;height:7px;border-radius:50%;background:#3b78c8}
-.layout{display:grid;grid-template-columns:265px 1fr;gap:20px;margin:20px 0 60px}
-.sidebar,.toolbar,.card{border:1px solid var(--line);background:linear-gradient(150deg,#07172c,#041022);border-radius:16px}
-.sidebar{padding:20px;height:max-content}
-.side-title{font-weight:800;margin-bottom:18px}
-.categories{display:grid;gap:8px}
-.cat{display:flex;justify-content:space-between;gap:8px;padding:11px 12px;border-radius:11px;color:#a8bdd9;font-size:14px;cursor:pointer}
-.cat.active{background:linear-gradient(90deg,#0d55c8,#123b8d);color:white}
-.cat span{background:#102a4e;border-radius:20px;padding:2px 8px;font-size:11px}
-.range{margin-top:25px;border-top:1px solid #1c3659;padding-top:20px}
-.range input{width:100%;accent-color:#2d91ff}
-.range-values{display:flex;justify-content:space-between;color:#b7c9e3;font-size:12px;margin-top:10px}
-.content{min-width:0}
-.toolbar{padding:12px;display:flex;gap:12px;justify-content:space-between;align-items:center;margin-bottom:12px}
-select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-radius:11px;padding:12px 14px;outline:none}
-.search{width:min(360px,45%)}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.card{padding:10px;overflow:hidden;transition:.2s;position:relative}
-.card:hover{transform:translateY(-4px);border-color:#347bd0}
-.preview{height:155px;border:1px solid #315174;border-radius:10px;overflow:hidden;position:relative;background:#08172d}
-.preview:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 60% 20%,#254e9c,transparent 60%)}
-.mock-window{position:absolute;left:12%;right:12%;top:20px;bottom:0;background:#0b2341;border:1px solid #4c78a9;border-radius:7px 7px 0 0;padding:10px}
-.mock-top{height:10px;background:#21466e;border-radius:4px;margin-bottom:12px}
-.mock-body{display:grid;grid-template-columns:28% 1fr;gap:9px;height:90px}
-.mock-side{background:#102e51;border-radius:4px}
-.mock-main{background:linear-gradient(145deg,#173e6c,#10223e);border-radius:4px;position:relative}
-.mock-main:after{content:"";position:absolute;left:12px;right:12px;bottom:13px;height:35px;background:linear-gradient(90deg,#278fff 35%,#5b55ff 35% 65%,#23d5a0 65%);opacity:.75;border-radius:4px}
-.badge{position:absolute;right:8px;top:8px;border-radius:20px;padding:5px 9px;font-size:10px;font-weight:800;background:#6d4cff}
-.badge.green{background:#19a982}.badge.orange{background:#e58b23}
-.card-body{padding:9px 3px 2px}
-.card h3{font-size:15px;margin:0 0 8px}
-.tag{display:inline-block;font-size:10px;background:#14508c;color:#a8ddff;border-radius:20px;padding:4px 8px;margin-bottom:10px}
-.features{display:flex;gap:10px;color:#92a9c7;font-size:10px;white-space:nowrap;overflow:hidden}
-.card-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
-.price{font-size:20px;color:#25a0ff;font-weight:900}
-.details{font-size:11px;padding:9px 12px;border:1px solid #4369ff;border-radius:20px;color:#dfe8ff;background:#0a1731;cursor:pointer}
-@media(max-width:1100px){.navlinks{gap:12px}.hero{padding:30px}.hero-art{width:38%}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){.container{width:calc(100% - 20px)}.nav{padding:12px;gap:12px}.navlinks{display:none}.hero{padding:25px;display:block}.hero-art{width:100%;height:150px;margin-top:20px}.hero h1{font-size:34px}.layout{grid-template-columns:1fr}.sidebar{display:none}.toolbar{flex-wrap:wrap}.search{width:100%}.grid{grid-template-columns:1fr}.hero .btn{padding:12px 14px}}
+
+body{
+  margin:0;
+  background:radial-gradient(circle at 50% -10%,#102d57 0,#020711 48%);
+  color:var(--text);
+  font-family:Inter,Segoe UI,Arial,sans-serif
+}
+
+a{
+  text-decoration:none;
+  color:inherit
+}
+
+button,input,select{
+  font:inherit
+}
+
+.container{
+  width:min(1540px,calc(100% - 42px));
+  margin:auto
+}
+
+.nav{
+  margin:18px auto 0;
+  border:1px solid #27456f;
+  background:rgba(5,16,34,.92);
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  gap:28px;
+  padding:13px 24px;
+  box-shadow:0 12px 45px #0006;
+  position:sticky;
+  top:12px;
+  z-index:5;
+  backdrop-filter:blur(16px)
+}
+
+.logo{
+  font-size:27px;
+  font-weight:900;
+  letter-spacing:-1.4px;
+  white-space:nowrap
+}
+
+.logo span{
+  color:#42aaff
+}
+
+.logo i{
+  font-style:normal;
+  color:#fff
+}
+
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:26px;
+  margin-left:auto
+}
+
+.navlinks a{
+  font-size:14px;
+  color:#b8c9e3
+}
+
+.navlinks a.active{
+  color:#fff;
+  border-bottom:2px solid var(--blue);
+  padding-bottom:17px;
+  margin-bottom:-17px
+}
+
+.nav-actions{
+  display:flex;
+  gap:10px;
+  align-items:center
+}
+
+.iconbtn,
+.account{
+  background:#0a1930;
+  border:1px solid #213b60;
+  color:#dceaff;
+  border-radius:13px;
+  padding:11px 14px;
+  cursor:pointer
+}
+
+.account:hover,
+.iconbtn:hover{
+  border-color:#347bd0;
+  background:#102341
+}
+
+.hero{
+  margin-top:18px;
+  border:1px solid #16477d;
+  border-radius:20px;
+  min-height:275px;
+  padding:36px 85px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  overflow:hidden;
+  position:relative;
+  background:linear-gradient(115deg,#06152d,#09204a 55%,#07152b)
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:-80px 35% -100px -10%;
+  background:radial-gradient(ellipse,#1168d766,transparent 68%);
+  pointer-events:none
+}
+
+.hero-content{
+  position:relative;
+  z-index:1;
+  max-width:650px
+}
+
+.pills{
+  display:flex;
+  gap:14px;
+  color:#b9d4f8;
+  font-size:13px;
+  margin-bottom:18px
+}
+
+h1{
+  font-size:48px;
+  line-height:1.05;
+  margin:0 0 18px;
+  letter-spacing:-2px
+}
+
+h1 span{
+  color:#259eff
+}
+
+.hero p{
+  color:#b4c7e3;
+  font-size:17px;
+  line-height:1.6;
+  margin:0 0 22px
+}
+
+.btn{
+  border:1px solid #2775ff;
+  background:linear-gradient(135deg,#138fff,#2365ff);
+  color:white;
+  padding:14px 22px;
+  border-radius:14px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 8px 22px #006eff30;
+  display:inline-block
+}
+
+.btn.alt{
+  background:#10152e;
+  border-color:#8751ff;
+  margin-left:10px
+}
+
+.hero-art{
+  width:43%;
+  height:220px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center
+}
+
+.screen{
+  border:2px solid #345e9b;
+  border-radius:12px;
+  background:linear-gradient(145deg,#0b2448,#071021);
+  box-shadow:0 0 45px #126eff55;
+  position:absolute;
+  padding:18px
+}
+
+.screen.main{
+  width:330px;
+  height:190px;
+  transform:rotate(-3deg);
+  z-index:2
+}
+
+.screen.back{
+  width:230px;
+  height:145px;
+  right:0;
+  transform:rotate(8deg);
+  opacity:.8
+}
+
+.screen h3{
+  font-size:13px;
+  margin:0 0 16px
+}
+
+.chart{
+  height:75px;
+  display:flex;
+  align-items:end;
+  gap:7px
+}
+
+.chart b{
+  display:block;
+  width:18px;
+  border-radius:4px 4px 0 0;
+  background:linear-gradient(#5f6dff,#159cff)
+}
+
+.dots{
+  display:flex;
+  gap:7px;
+  margin-bottom:14px
+}
+
+.dots i{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#3b78c8
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:265px 1fr;
+  gap:20px;
+  margin:20px 0 60px
+}
+
+.sidebar,
+.toolbar,
+.card{
+  border:1px solid var(--line);
+  background:linear-gradient(150deg,#07172c,#041022);
+  border-radius:16px
+}
+
+.sidebar{
+  padding:20px;
+  height:max-content
+}
+
+.side-title{
+  font-weight:800;
+  margin-bottom:18px
+}
+
+.categories{
+  display:grid;
+  gap:8px
+}
+
+.cat{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  padding:11px 12px;
+  border-radius:11px;
+  color:#a8bdd9;
+  font-size:14px;
+  cursor:pointer
+}
+
+.cat.active{
+  background:linear-gradient(90deg,#0d55c8,#123b8d);
+  color:white
+}
+
+.cat span{
+  background:#102a4e;
+  border-radius:20px;
+  padding:2px 8px;
+  font-size:11px
+}
+
+.range{
+  margin-top:25px;
+  border-top:1px solid #1c3659;
+  padding-top:20px
+}
+
+.range input{
+  width:100%;
+  accent-color:#2d91ff
+}
+
+.range-values{
+  display:flex;
+  justify-content:space-between;
+  color:#b7c9e3;
+  font-size:12px;
+  margin-top:10px
+}
+
+.content{
+  min-width:0
+}
+
+.toolbar{
+  padding:12px;
+  display:flex;
+  gap:12px;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px
+}
+
+select,
+.search{
+  background:#0a1a31;
+  border:1px solid #254467;
+  color:#dbeaff;
+  border-radius:11px;
+  padding:12px 14px;
+  outline:none
+}
+
+.search{
+  width:min(360px,45%)
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px
+}
+
+.card{
+  padding:10px;
+  overflow:hidden;
+  transition:.2s;
+  position:relative
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:#347bd0
+}
+
+.preview{
+  height:155px;
+  border:1px solid #315174;
+  border-radius:10px;
+  overflow:hidden;
+  position:relative;
+  background:#08172d
+}
+
+.preview:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 60% 20%,#254e9c,transparent 60%)
+}
+
+.mock-window{
+  position:absolute;
+  left:12%;
+  right:12%;
+  top:20px;
+  bottom:0;
+  background:#0b2341;
+  border:1px solid #4c78a9;
+  border-radius:7px 7px 0 0;
+  padding:10px
+}
+
+.mock-top{
+  height:10px;
+  background:#21466e;
+  border-radius:4px;
+  margin-bottom:12px
+}
+
+.mock-body{
+  display:grid;
+  grid-template-columns:28% 1fr;
+  gap:9px;
+  height:90px
+}
+
+.mock-side{
+  background:#102e51;
+  border-radius:4px
+}
+
+.mock-main{
+  background:linear-gradient(145deg,#173e6c,#10223e);
+  border-radius:4px;
+  position:relative
+}
+
+.mock-main:after{
+  content:"";
+  position:absolute;
+  left:12px;
+  right:12px;
+  bottom:13px;
+  height:35px;
+  background:linear-gradient(
+    90deg,
+    #278fff 35%,
+    #5b55ff 35% 65%,
+    #23d5a0 65%
+  );
+  opacity:.75;
+  border-radius:4px
+}
+
+.badge{
+  position:absolute;
+  right:8px;
+  top:8px;
+  border-radius:20px;
+  padding:5px 9px;
+  font-size:10px;
+  font-weight:800;
+  background:#6d4cff;
+  z-index:2
+}
+
+.badge.green{
+  background:#19a982
+}
+
+.badge.orange{
+  background:#e58b23
+}
+
+.card-body{
+  padding:9px 3px 2px
+}
+
+.card h3{
+  font-size:15px;
+  margin:0 0 8px
+}
+
+.tag{
+  display:inline-block;
+  font-size:10px;
+  background:#14508c;
+  color:#a8ddff;
+  border-radius:20px;
+  padding:4px 8px;
+  margin-bottom:10px
+}
+
+.features{
+  display:flex;
+  gap:10px;
+  color:#92a9c7;
+  font-size:10px;
+  white-space:nowrap;
+  overflow:hidden
+}
+
+.card-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:12px
+}
+
+.price{
+  font-size:20px;
+  color:#25a0ff;
+  font-weight:900
+}
+
+.details{
+  font-size:11px;
+  padding:9px 12px;
+  border:1px solid #4369ff;
+  border-radius:20px;
+  color:#dfe8ff;
+  background:#0a1731;
+  cursor:pointer;
+  display:inline-block
+}
 
 .about-section{
   margin:26px 0 0;
@@ -92,285 +522,1174 @@ select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-
   gap:24px;
   align-items:center;
   box-shadow:0 14px 45px #0003;
-  scroll-margin-top:110px;
-}
-.about-kicker{color:#42aaff;font-size:12px;font-weight:900;letter-spacing:1.4px}
-.about-section h2{font-size:30px;margin:7px 0 10px}
-.about-section p{color:#91a7c6;line-height:1.65;max-width:760px;margin:0}
-.about-points{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}
-.about-points span{
-  background:#0a1a31;border:1px solid #254467;border-radius:999px;
-  padding:8px 11px;color:#c8d8ed;font-size:12px
-}
-.about-card{
-  border:1px solid #315276;background:linear-gradient(145deg,#0b2341,#071326);
-  border-radius:17px;padding:21px;display:flex;flex-direction:column;gap:9px
-}
-.about-card strong{font-size:18px}
-.about-card span{color:#91a7c6;font-size:13px;line-height:1.5}
-.about-card .details{align-self:flex-start;margin-top:8px}
-.account-modal{
-  position:fixed;inset:0;display:none;align-items:center;justify-content:center;
-  z-index:1000;padding:20px
-}
-.account-modal.open{display:flex}
-.account-backdrop{position:absolute;inset:0;background:#000b;backdrop-filter:blur(8px)}
-.account-box{
-  position:relative;width:min(420px,100%);padding:28px;border-radius:22px;
-  border:1px solid #315276;background:linear-gradient(150deg,#0a1e39,#040c18);
-  box-shadow:0 25px 90px #000b;z-index:1
-}
-.account-close{
-  position:absolute;right:13px;top:11px;width:38px;height:38px;border-radius:12px;
-  border:1px solid #27456f;background:#0a1930;color:#dceaff;font-size:25px;cursor:pointer
-}
-.account-icon{
-  width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
-  background:linear-gradient(135deg,#138fff,#2365ff);font-size:25px;margin-bottom:16px
-}
-.account-box h2{margin:7px 0 8px;font-size:28px}
-.account-box p{color:#91a7c6;line-height:1.55;margin:0 0 20px}
-.account-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.account-actions .btn{text-align:center}
-@media(max-width:760px){
-  .about-section{grid-template-columns:1fr;padding:22px}
-  .about-section h2{font-size:25px}
-  .account-actions{grid-template-columns:1fr}
+  scroll-margin-top:110px
 }
 
+.about-kicker{
+  color:#42aaff;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1.4px
+}
+
+.about-section h2{
+  font-size:30px;
+  margin:7px 0 10px
+}
+
+.about-section p{
+  color:#91a7c6;
+  line-height:1.65;
+  max-width:760px;
+  margin:0
+}
+
+.about-points{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:17px
+}
+
+.about-points span{
+  background:#0a1a31;
+  border:1px solid #254467;
+  border-radius:999px;
+  padding:8px 11px;
+  color:#c8d8ed;
+  font-size:12px
+}
+
+.about-card{
+  border:1px solid #315276;
+  background:linear-gradient(145deg,#0b2341,#071326);
+  border-radius:17px;
+  padding:21px;
+  display:flex;
+  flex-direction:column;
+  gap:9px
+}
+
+.about-card strong{
+  font-size:18px
+}
+
+.about-card span{
+  color:#91a7c6;
+  font-size:13px;
+  line-height:1.5
+}
+
+.about-card .details{
+  align-self:flex-start;
+  margin-top:8px
+}
+
+.account-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+  padding:20px
+}
+
+.account-modal.open{
+  display:flex
+}
+
+.account-backdrop{
+  position:absolute;
+  inset:0;
+  background:#000b;
+  backdrop-filter:blur(8px)
+}
+
+.account-box{
+  position:relative;
+  width:min(420px,100%);
+  padding:28px;
+  border-radius:22px;
+  border:1px solid #315276;
+  background:linear-gradient(150deg,#0a1e39,#040c18);
+  box-shadow:0 25px 90px #000b;
+  z-index:1
+}
+
+.account-close{
+  position:absolute;
+  right:13px;
+  top:11px;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  border:1px solid #27456f;
+  background:#0a1930;
+  color:#dceaff;
+  font-size:25px;
+  cursor:pointer
+}
+
+.account-icon{
+  width:54px;
+  height:54px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#138fff,#2365ff);
+  font-size:25px;
+  margin-bottom:16px
+}
+
+.account-box h2{
+  margin:7px 0 8px;
+  font-size:28px
+}
+
+.account-box p{
+  color:#91a7c6;
+  line-height:1.55;
+  margin:0 0 20px
+}
+
+.account-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
+}
+
+.account-actions .btn{
+  text-align:center
+}
+
+@media(max-width:1100px){
+  .navlinks{gap:12px}
+  .hero{padding:30px}
+  .hero-art{width:38%}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:760px){
+  .container{
+    width:calc(100% - 20px)
+  }
+
+  .nav{
+    padding:12px;
+    gap:12px
+  }
+
+  .navlinks{
+    display:none
+  }
+
+  .hero{
+    padding:25px;
+    display:block
+  }
+
+  .hero-art{
+    width:100%;
+    height:150px;
+    margin-top:20px
+  }
+
+  .hero h1{
+    font-size:34px
+  }
+
+  .layout{
+    grid-template-columns:1fr
+  }
+
+  .sidebar{
+    display:none
+  }
+
+  .toolbar{
+    flex-wrap:wrap
+  }
+
+  .search{
+    width:100%
+  }
+
+  .grid{
+    grid-template-columns:1fr
+  }
+
+  .hero .btn{
+    padding:12px 14px
+  }
+
+  .about-section{
+    grid-template-columns:1fr;
+    padding:22px
+  }
+
+  .about-section h2{
+    font-size:25px
+  }
+
+  .account-actions{
+    grid-template-columns:1fr
+  }
+}
 </style>
 </head>
+
 <body>
+
 <div class="container">
+
   <nav class="nav">
-    <div class="logo"><span>◢</span> Panel<i>Market</i></div>
+
+    <div class="logo">
+      <span>◢</span> Panel<i>Market</i>
+    </div>
+
     <div class="navlinks">
       <a class="active" href="index.html">⌂ Anasayfa</a>
       <a href="paneller.html">▦ Paneller</a>
       <a href="kategoriler.html">▦ Kategoriler</a>
       <a href="fiyatlar.html">◉ Fiyatlar</a>
       <a href="hakkimizda.html">▥ Hakkımızda</a>
-      <a href="#destek" onclick="setTimeout(()=>document.getElementById('destek')?.scrollIntoView({behavior:'smooth',block:'start'}),0)">♧ Destek</a>
+      <a href="#destek">♧ Destek</a>
     </div>
-    <div class="nav-actions"><button class="iconbtn" type="button" onclick="focusSearch()" aria-label="Ara">⌕</button>onclick="window.location.href='hesabim.html'"></div>
+
+    <div class="nav-actions">
+
+      <button
+        class="iconbtn"
+        type="button"
+        onclick="focusSearch()"
+        aria-label="Ara"
+      >⌕</button>
+
+      <!-- HESABIM BUTONU -->
+      <button
+        class="account"
+        type="button"
+        onclick="window.location.href='hesabim.html'"
+      >♙ Hesabım</button>
+
+    </div>
+
   </nav>
 
   <section class="hero">
+
     <div class="hero-content">
-      <div class="pills">⚡ Hızlı Teslimat　•　🛡 Güvenli Alışveriş</div>
-      <h1>Profesyonel <span>Web Panelleri</span></h1>
-      <p>Hazır yönetim panelleri ve modern web site temaları ile projenizi bir üst seviyeye taşıyın.</p>
-      <button class="btn" onclick="document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">▦ Panelleri İncele</button>
-      <button class="btn alt" onclick="document.querySelector('#temalar').scrollIntoView({behavior:'smooth'})">✿ Tema Paketleri</button>
+
+      <div class="pills">
+        ⚡ Hızlı Teslimat　•　🛡 Güvenli Alışveriş
+      </div>
+
+      <h1>
+        Profesyonel <span>Web Panelleri</span>
+      </h1>
+
+      <p>
+        Hazır yönetim panelleri ve modern web site temaları ile
+        projenizi bir üst seviyeye taşıyın.
+      </p>
+
+      <button
+        class="btn"
+        type="button"
+        onclick="document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})"
+      >
+        ▦ Panelleri İncele
+      </button>
+
+      <button
+        class="btn alt"
+        type="button"
+        onclick="document.querySelector('#temalar').scrollIntoView({behavior:'smooth'})"
+      >
+        ✿ Tema Paketleri
+      </button>
+
     </div>
+
     <div class="hero-art">
-      <div class="screen back"><div class="dots"><i></i><i></i><i></i></div><h3>Web Store</h3><div class="chart"><b style="height:35%"></b><b style="height:65%"></b><b style="height:45%"></b><b style="height:90%"></b><b style="height:70%"></b></div></div>
-      <div class="screen main"><div class="dots"><i></i><i></i><i></i></div><h3>Dashboard Analytics</h3><div class="chart"><b style="height:30%"></b><b style="height:55%"></b><b style="height:45%"></b><b style="height:82%"></b><b style="height:65%"></b><b style="height:100%"></b><b style="height:76%"></b></div></div>
+
+      <div class="screen back">
+        <div class="dots">
+          <i></i><i></i><i></i>
+        </div>
+
+        <h3>Web Store</h3>
+
+        <div class="chart">
+          <b style="height:35%"></b>
+          <b style="height:65%"></b>
+          <b style="height:45%"></b>
+          <b style="height:90%"></b>
+          <b style="height:70%"></b>
+        </div>
+      </div>
+
+      <div class="screen main">
+
+        <div class="dots">
+          <i></i><i></i><i></i>
+        </div>
+
+        <h3>Dashboard Analytics</h3>
+
+        <div class="chart">
+          <b style="height:30%"></b>
+          <b style="height:55%"></b>
+          <b style="height:45%"></b>
+          <b style="height:82%"></b>
+          <b style="height:65%"></b>
+          <b style="height:100%"></b>
+          <b style="height:76%"></b>
+        </div>
+
+      </div>
+
     </div>
+
   </section>
 
-  <section id="temalar" style="margin:26px 0 0;border:1px solid #27456f;background:linear-gradient(150deg,#07172c,#041022);border-radius:22px;padding:26px;box-shadow:0 14px 45px #0003;scroll-margin-top:110px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px;">
-      <div><div style="color:#8dbaff;font-size:12px;font-weight:800;letter-spacing:1px;">✿ TASARIM KOLEKSİYONU</div><h2 style="margin:6px 0 0;font-size:28px;">Tema Paketleri</h2><p style="margin:8px 0 0;color:#91a7c6;">Modern, kullanıma hazır ve mobil uyumlu tema paketlerini keşfedin.</p></div>
-      <button class="btn alt" onclick="document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">Tüm Ürünlere Git →</button>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;">
-      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;"><div style="font-size:28px;">◈</div><h3 style="margin:12px 0 8px;">Kurumsal Tema</h3><p style="color:#91a7c6;font-size:13px;line-height:1.6;">Profesyonel şirket ve marka siteleri için.</p><button class="details" onclick="document.querySelector('#search').value='Kurumsal';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">İncele →</button></div>
-      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;"><div style="font-size:28px;">◇</div><h3 style="margin:12px 0 8px;">E-Ticaret Tema</h3><p style="color:#91a7c6;font-size:13px;line-height:1.6;">Ürün ve mağaza projeleri için modern tasarım.</p><button class="details" onclick="document.querySelector('#search').value='E-Ticaret';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">İncele →</button></div>
-      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;"><div style="font-size:28px;">▧</div><h3 style="margin:12px 0 8px;">Portföy Tema</h3><p style="color:#91a7c6;font-size:13px;line-height:1.6;">Kişisel çalışmalar ve yaratıcı projeler için.</p><button class="details" onclick="document.querySelector('#search').value='Portföy';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})">İncele →</button></div>
-    </div>
-  </section>
+  <section
+    id="temalar"
+    style="margin:26px 0 0;border:1px solid #27456f;background:linear-gradient(150deg,#07172c,#041022);border-radius:22px;padding:26px;box-shadow:0 14px 45px #0003;scroll-margin-top:110px;"
+  >
 
+    <div
+      style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px;"
+    >
+
+      <div>
+
+        <div
+          style="color:#8dbaff;font-size:12px;font-weight:800;letter-spacing:1px;"
+        >
+          ✿ TASARIM KOLEKSİYONU
+        </div>
+
+        <h2 style="margin:6px 0 0;font-size:28px;">
+          Tema Paketleri
+        </h2>
+
+        <p style="margin:8px 0 0;color:#91a7c6;">
+          Modern, kullanıma hazır ve mobil uyumlu tema paketlerini keşfedin.
+        </p>
+
+      </div>
+
+      <button
+        class="btn alt"
+        type="button"
+        onclick="document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})"
+      >
+        Tüm Ürünlere Git →
+      </button>
+
+    </div>
+
+    <div
+      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;"
+    >
+
+      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;">
+        <div style="font-size:28px;">◈</div>
+        <h3 style="margin:12px 0 8px;">Kurumsal Tema</h3>
+        <p style="color:#91a7c6;font-size:13px;line-height:1.6;">
+          Profesyonel şirket ve marka siteleri için.
+        </p>
+        <button
+          class="details"
+          type="button"
+          onclick="document.querySelector('#search').value='Kurumsal';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})"
+        >
+          İncele →
+        </button>
+      </div>
+
+      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;">
+        <div style="font-size:28px;">◇</div>
+        <h3 style="margin:12px 0 8px;">E-Ticaret Tema</h3>
+        <p style="color:#91a7c6;font-size:13px;line-height:1.6;">
+          Ürün ve mağaza projeleri için modern tasarım.
+        </p>
+        <button
+          class="details"
+          type="button"
+          onclick="document.querySelector('#search').value='E-Ticaret';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})"
+        >
+          İncele →
+        </button>
+      </div>
+
+      <div style="background:#0a1930;border:1px solid #315276;border-radius:16px;padding:18px;">
+        <div style="font-size:28px;">▧</div>
+        <h3 style="margin:12px 0 8px;">Portföy Tema</h3>
+        <p style="color:#91a7c6;font-size:13px;line-height:1.6;">
+          Kişisel çalışmalar ve yaratıcı projeler için.
+        </p>
+        <button
+          class="details"
+          type="button"
+          onclick="document.querySelector('#search').value='Portföy';renderCards();document.querySelector('#paneller').scrollIntoView({behavior:'smooth'})"
+        >
+          İncele →
+        </button>
+      </div>
+
+    </div>
+
+  </section>
 
   <section id="hakkimizda" class="about-section">
+
     <div class="about-copy">
-      <div class="about-kicker">PANELMARKET</div>
-      <h2>Web projeleriniz için hazır çözümler</h2>
-      <p>PanelMarket; modern web panellerini, tema paketlerini ve kullanıma hazır dijital çözümleri tek yerde sunmak için tasarlandı.</p>
+
+      <div class="about-kicker">
+        PANELMARKET
+      </div>
+
+      <h2>
+        Web projeleriniz için hazır çözümler
+      </h2>
+
+      <p>
+        PanelMarket; modern web panellerini, tema paketlerini ve
+        kullanıma hazır dijital çözümleri tek yerde sunmak için tasarlandı.
+      </p>
+
       <div class="about-points">
         <span>✓ Mobil uyumlu</span>
         <span>✓ Modern tasarım</span>
         <span>✓ Kolay kurulum</span>
         <span>✓ Güvenli alışveriş</span>
       </div>
+
     </div>
+
     <div class="about-card">
+
       <strong>Bir projeniz mi var?</strong>
-      <span>Ürünleri inceleyin veya destek ekibine ulaşın.</span>
-      <a href="#destek" class="details">Desteğe Git →</a>
+
+      <span>
+        Ürünleri inceleyin veya destek ekibine ulaşın.
+      </span>
+
+      <a href="#destek" class="details">
+        Desteğe Git →
+      </a>
+
     </div>
+
   </section>
 
   <section class="layout" id="paneller">
+
     <aside class="sidebar">
-      <div class="side-title">▦　Kategoriler</div>
-      <div class="categories">
-        <div class="cat active" onclick="filterCategory('Tümü',this)">◈ Tüm Paneller <span>42</span></div>
-        <div class="cat" onclick="filterCategory('Oyun',this)">◉ Oyun Panelleri <span>8</span></div>
-        <div class="cat" onclick="filterCategory('E-Ticaret',this)">◇ E-Ticaret Panelleri <span>7</span></div>
-        <div class="cat" onclick="filterCategory('Hosting',this)">▤ Hosting Panelleri <span>6</span></div>
-        <div class="cat" onclick="filterCategory('Sosyal',this)">♧ Sosyal Medya <span>5</span></div>
-        <div class="cat" onclick="filterCategory('Kurumsal',this)">▣ Kurumsal Siteler <span>6</span></div>
-        <div class="cat" onclick="filterCategory('Restoran',this)">▥ Restoran & Cafe <span>4</span></div>
-        <div class="cat" onclick="filterCategory('Portföy',this)">▧ Portföy Siteleri <span>4</span></div>
-        <div class="cat" onclick="filterCategory('SaaS',this)">▨ SaaS & Dashboard <span>2</span></div>
+
+      <div class="side-title">
+        ▦　Kategoriler
       </div>
-      <div class="range" id="fiyatlar"><div class="side-title">▤　Fiyat Aralığı</div><input type="range" min="50" max="5000" value="5000" id="priceRange" oninput="updatePrice(this.value)"><div class="range-values"><span>50 TL</span><span id="priceValue">5.000 TL</span></div></div>
+
+      <div class="categories">
+
+        <div class="cat active" onclick="filterCategory('Tümü',this)">
+          ◈ Tüm Paneller <span>42</span>
+        </div>
+
+        <div class="cat" onclick="filterCategory('Oyun',this)">
+          ◉ Oyun Panelleri <span>8</span>
+        </div>
+
+        <div class="cat" onclick="filterCategory('E-Ticaret',this)">
+          ◇ E-Ticaret Panelleri <span>7</span>
+        </div>
+
+        <div class="cat" onclick="filterCategory('Hosting',this)">
+          ▤ Hosting Panelleri <span>6</span>
+        </div>
+
+        <div class="cat" onclick="filterCategory('Sosyal',this)">
+          ♧ Sosyal Medya <span>5</span>
+        </div>
+
+        <div class="cat" onclick="filterCategory('Kurumsal',this)">
+          ▣ Kurumsal Siteler <span>6</span>
+        </div>
+
+        <div class="cat" onclick="filterCategory('Restoran',this)">
+          ▥ Restoran & Cafe <span>4</span>
+        </div>
+
+        <div class="cat" onclick="filterCategory('Portföy',this)">
+          ▧ Portföy Siteleri <span>4</span>
+        </div>
+
+        <div class="cat" onclick="filterCategory('SaaS',this)">
+          ▨ SaaS & Dashboard <span>2</span>
+        </div>
+
+      </div>
+
+      <div class="range" id="fiyatlar">
+
+        <div class="side-title">
+          ▤　Fiyat Aralığı
+        </div>
+
+        <input
+          type="range"
+          min="50"
+          max="5000"
+          value="5000"
+          id="priceRange"
+          oninput="updatePrice(this.value)"
+        >
+
+        <div class="range-values">
+          <span>50 TL</span>
+          <span id="priceValue">5.000 TL</span>
+        </div>
+
+      </div>
+
     </aside>
 
     <main class="content">
+
       <div class="toolbar">
-        <select id="sort" onchange="sortCards()"><option value="new">☷ En Yeniler</option><option value="low">Fiyat: Artan</option><option value="high">Fiyat: Azalan</option></select>
-        <input class="search" id="search" oninput="renderCards()" placeholder="⌕ Panel veya tema ara...">
+
+        <select id="sort" onchange="sortCards()">
+          <option value="new">☷ En Yeniler</option>
+          <option value="low">Fiyat: Artan</option>
+          <option value="high">Fiyat: Azalan</option>
+        </select>
+
+        <input
+          class="search"
+          id="search"
+          oninput="renderCards()"
+          placeholder="⌕ Panel veya tema ara..."
+        >
+
       </div>
+
       <div class="grid" id="cardGrid"></div>
+
     </main>
+
   </section>
+
 </div>
 
+<section
+  id="destek"
+  class="about-section"
+  style="margin-bottom:60px;"
+>
 
-
-<section id="destek" class="about-section" style="margin-bottom:60px;">
   <div class="about-copy">
-    <div class="about-kicker">PANELMARKET DESTEK</div>
-    <h2>Nasıl yardımcı olabiliriz?</h2>
+
+    <div class="about-kicker">
+      PANELMARKET DESTEK
+    </div>
+
+    <h2>
+      Nasıl yardımcı olabiliriz?
+    </h2>
+
     <p>
       Ürünler, satın alma, kurulum veya hesabınızla ilgili bir konuda
       destek almak için aşağıdaki seçenekleri kullanabilirsiniz.
     </p>
+
     <div class="about-points">
       <span>✓ Ürün desteği</span>
       <span>✓ Kurulum desteği</span>
       <span>✓ Satın alma desteği</span>
       <span>✓ Hesap desteği</span>
     </div>
+
   </div>
 
   <div class="about-card">
+
     <strong>Destek talebi</strong>
-    <span>Size yardımcı olabilmemiz için destek ekibine ulaşabilirsiniz.</span>
-    <a class="details" href="mailto:destek@panelmarket.com">E-posta Gönder →</a>
+
+    <span>
+      Size yardımcı olabilmemiz için destek ekibine ulaşabilirsiniz.
+    </span>
+
+    <a
+      class="details"
+      href="mailto:destek@panelmarket.com"
+    >
+      E-posta Gönder →
+    </a>
+
   </div>
+
 </section>
 
-<div class="account-modal" id="accountModal" aria-hidden="true">
-  <div class="account-backdrop" onclick="closeAccount()"></div>
-  <div class="account-box" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
-    <button class="account-close" type="button" onclick="closeAccount()" aria-label="Kapat">×</button>
-    <div class="account-icon">♙</div>
-    <div class="about-kicker">PANELMARKET HESAP</div>
-    <a href="hesabim.html" class="btn">Hesabım</a>
-    <p>Hesap işlemleri için aşağıdaki seçeneklerden birini kullanın.</p>
-    <div class="account-actions">
-      <a href="login.html" class="btn">Giriş Yap</a>
-      <a href="register.html" class="btn alt">Kayıt Ol</a>
+<!-- HESAP PENCERESİ -->
+<div
+  class="account-modal"
+  id="accountModal"
+  aria-hidden="true"
+>
+
+  <div
+    class="account-backdrop"
+    onclick="closeAccount()"
+  ></div>
+
+  <div
+    class="account-box"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="accountTitle"
+  >
+
+    <button
+      class="account-close"
+      type="button"
+      onclick="closeAccount()"
+      aria-label="Kapat"
+    >
+      ×
+    </button>
+
+    <div class="account-icon">
+      ♙
     </div>
+
+    <div class="about-kicker">
+      PANELMARKET HESAP
+    </div>
+
+    <a href="hesabim.html" class="btn">
+      Hesabım
+    </a>
+
+    <p>
+      Hesap işlemleri için aşağıdaki seçeneklerden birini kullanın.
+    </p>
+
+    <div class="account-actions">
+
+      <a href="login.html" class="btn">
+        Giriş Yap
+      </a>
+
+      <a href="register.html" class="btn alt">
+        Kayıt Ol
+      </a>
+
+    </div>
+
   </div>
+
 </div>
 
 <script>
-const SUPABASE_URL = 'https://gakvvqcsaoxhbuqvimqe.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_74vcsqJXv7J_P-1hDwGQyg_WQBvIdty';
+
+const SUPABASE_URL =
+  'https://gakvvqcsaoxhbuqvimqe.supabase.co';
+
+const SUPABASE_ANON_KEY =
+  'sb_publishable_74vcsqJXv7J_P-1hDwGQyg_WQBvIdty';
 
 const fallbackProducts = [
- {name:'Oyun Paneli Pro',cat:'Oyun',price:1250,badge:'Popüler',cls:'',tag:'Oyun Panelleri',features:'Özel Tasarım · Kolay Kurulum · Sınırsız Slot'},
- {name:'E-Ticaret Yönetim Paneli',cat:'E-Ticaret',price:989,badge:'Yeni',cls:'green',tag:'E-Ticaret Panelleri',features:'Stok Yönetimi · Sipariş Takibi · Raporlama'},
- {name:'Hosting Paneli',cat:'Hosting',price:1750,badge:'En Çok Satan',cls:'orange',tag:'Hosting Panelleri',features:'Sunucu Yönetimi · Otomatik Kurulum · 7/24 Destek'},
- {name:'Sosyal Medya Paneli',cat:'Sosyal',price:1150,badge:'Popüler',cls:'',tag:'Sosyal Medya Panelleri',features:'Çoklu Hesap · Planlama · Analiz'},
- {name:'Kurumsal Web Sitesi',cat:'Kurumsal',price:750,badge:'Yeni',cls:'green',tag:'Kurumsal Siteler',features:'Modern Tasarım · SEO Uyumlu · Mobil Uyumlu'},
- {name:'Restoran Web Sitesi',cat:'Restoran',price:680,badge:'Öne Çıkan',cls:'',tag:'Restoran & Cafe',features:'Menü Yönetimi · Rezervasyon · Mobil Uyumlu'},
- {name:'Portföy Web Sitesi',cat:'Portföy',price:620,badge:'Yeni',cls:'green',tag:'Portföy Siteleri',features:'Özel Tasarım · Hızlı Yükleme · SEO Uyumlu'},
- {name:'SaaS Dashboard',cat:'SaaS',price:1450,badge:'En Çok Satan',cls:'orange',tag:'SaaS & Dashboard',features:'Analitik Raporlar · Kullanıcı Yönetimi · Ölçeklenebilir'}
+
+  {
+    name:'Oyun Paneli Pro',
+    cat:'Oyun',
+    price:1250,
+    badge:'Popüler',
+    cls:'',
+    tag:'Oyun Panelleri',
+    features:'Özel Tasarım · Kolay Kurulum · Sınırsız Slot'
+  },
+
+  {
+    name:'E-Ticaret Yönetim Paneli',
+    cat:'E-Ticaret',
+    price:989,
+    badge:'Yeni',
+    cls:'green',
+    tag:'E-Ticaret Panelleri',
+    features:'Stok Yönetimi · Sipariş Takibi · Raporlama'
+  },
+
+  {
+    name:'Hosting Paneli',
+    cat:'Hosting',
+    price:1750,
+    badge:'En Çok Satan',
+    cls:'orange',
+    tag:'Hosting Panelleri',
+    features:'Sunucu Yönetimi · Otomatik Kurulum · 7/24 Destek'
+  },
+
+  {
+    name:'Sosyal Medya Paneli',
+    cat:'Sosyal',
+    price:1150,
+    badge:'Popüler',
+    cls:'',
+    tag:'Sosyal Medya Panelleri',
+    features:'Çoklu Hesap · Planlama · Analiz'
+  },
+
+  {
+    name:'Kurumsal Web Sitesi',
+    cat:'Kurumsal',
+    price:750,
+    badge:'Yeni',
+    cls:'green',
+    tag:'Kurumsal Siteler',
+    features:'Modern Tasarım · SEO Uyumlu · Mobil Uyumlu'
+  },
+
+  {
+    name:'Restoran Web Sitesi',
+    cat:'Restoran',
+    price:680,
+    badge:'Öne Çıkan',
+    cls:'',
+    tag:'Restoran & Cafe',
+    features:'Menü Yönetimi · Rezervasyon · Mobil Uyumlu'
+  },
+
+  {
+    name:'Portföy Web Sitesi',
+    cat:'Portföy',
+    price:620,
+    badge:'Yeni',
+    cls:'green',
+    tag:'Portföy Siteleri',
+    features:'Özel Tasarım · Hızlı Yükleme · SEO Uyumlu'
+  },
+
+  {
+    name:'SaaS Dashboard',
+    cat:'SaaS',
+    price:1450,
+    badge:'En Çok Satan',
+    cls:'orange',
+    tag:'SaaS & Dashboard',
+    features:'Analitik Raporlar · Kullanıcı Yönetimi · Ölçeklenebilir'
+  }
+
 ];
+
 let products = [...fallbackProducts];
-let active='Tümü';
+
+let active = 'Tümü';
 
 function normalizeProduct(row){
+
   return {
-    name: row.name || row.title || 'İsimsiz Ürün',
-    cat: row.cat || row.category || 'Tümü',
-    price: Number(row.price || 0),
-    badge: row.badge || 'Yeni',
-    cls: row.cls || '',
-    tag: row.tag || row.category || 'Web Paneli',
-    features: row.features || 'Modern Tasarım · Kolay Kurulum · Mobil Uyumlu'
+
+    name:
+      row.name ||
+      row.title ||
+      'İsimsiz Ürün',
+
+    cat:
+      row.cat ||
+      row.category ||
+      'Tümü',
+
+    price:
+      Number(row.price || 0),
+
+    badge:
+      row.badge ||
+      'Yeni',
+
+    cls:
+      row.cls ||
+      '',
+
+    tag:
+      row.tag ||
+      row.category ||
+      'Web Paneli',
+
+    features:
+      row.features ||
+      'Modern Tasarım · Kolay Kurulum · Mobil Uyumlu',
+
+    id:
+      row.id || '',
+
+    description:
+      row.description || '',
+
+    image_url:
+      row.image_url || '',
+
+    download_url:
+      row.download_url ||
+      row.file_url ||
+      ''
+
   };
+
 }
 
 async function loadProductsFromSupabase(){
-  if(!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.startsWith('BURAYA_')) return;
+
+  if(
+    !SUPABASE_ANON_KEY ||
+    SUPABASE_ANON_KEY.startsWith('BURAYA_')
+  ){
+    return;
+  }
+
   try{
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/products?select=*&order=created_at.desc`, {
-      headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` }
-    });
-    if(!response.ok) throw new Error(`Supabase HTTP ${response.status}`);
+
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/products?select=*&order=created_at.desc`,
+      {
+        headers:{
+          apikey:SUPABASE_ANON_KEY,
+          Authorization:`Bearer ${SUPABASE_ANON_KEY}`
+        }
+      }
+    );
+
+    if(!response.ok){
+      throw new Error(
+        `Supabase HTTP ${response.status}`
+      );
+    }
+
     const rows = await response.json();
-    if(Array.isArray(rows) && rows.length){
-      products = rows.map(normalizeProduct);
+
+    if(
+      Array.isArray(rows) &&
+      rows.length
+    ){
+
+      products =
+        rows.map(normalizeProduct);
+
       renderCards();
     }
-  }catch(error){
-    console.warn('Supabase ürünleri yüklenemedi. Yerel örnek ürünler gösteriliyor.', error);
-  }
-}
 
+  }catch(error){
+
+    console.warn(
+      'Supabase ürünleri yüklenemedi. Yerel örnek ürünler gösteriliyor.',
+      error
+    );
+
+  }
+
+}
 
 function focusSearch(){
-  const search = document.getElementById('search');
-  if(!search) return;
-  search.scrollIntoView({behavior:'smooth', block:'center'});
-  setTimeout(()=>{search.focus(); search.select();}, 350);
-}
-function openAccount(){
-  const modal=document.getElementById('accountModal');
-  if(!modal) return;
-  modal.classList.add('open');
-  modal.setAttribute('aria-hidden','false');
-  document.body.style.overflow='hidden';
-}
-function closeAccount(){
-  const modal=document.getElementById('accountModal');
-  if(!modal) return;
-  modal.classList.remove('open');
-  modal.setAttribute('aria-hidden','true');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAccount();});
 
-function money(n){return n.toLocaleString('tr-TR')+' TL'}
-function renderCards(){
- const q=document.getElementById('search').value.toLowerCase();
- const max=Number(document.getElementById('priceRange').value);
- let list=products.filter(p=>(active==='Tümü'||p.cat===active)&&p.price<=max&&(`${p.name} ${p.cat} ${p.tag}`).toLowerCase().includes(q));
- const sort=document.getElementById('sort').value;
- if(sort==='low')list.sort((a,b)=>a.price-b.price);
- if(sort==='high')list.sort((a,b)=>b.price-a.price);
- document.getElementById('cardGrid').innerHTML=list.map(p=>`
- <article class="card">
-  <div class="preview"><span class="badge ${p.cls}">${p.badge}</span><div class="mock-window"><div class="mock-top"></div><div class="mock-body"><div class="mock-side"></div><div class="mock-main"></div></div></div></div>
-  <div class="card-body"><h3>${p.name}</h3><span class="tag">${p.tag}</span><div class="features">${p.features}</div><div class="card-bottom"><div class="price">${money(p.price)}</div><button class="details" onclick="openDetails(${JSON.stringify(p).replace(/\"/g,'&quot;')})">Detayları Gör　→</button></div></div>
- </article>`).join('')||'<p>Bu filtrelere uygun ürün bulunamadı.</p>';
-}
-function openDetails(product){
-  const params = new URLSearchParams({
-    id: product.id || product.name || 'product',
-    name: product.name || '',
-    category: product.cat || '',
-    tag: product.tag || '',
-    price: String(product.price || 0),
-    badge: product.badge || '',
-    features: product.features || '',
-    description: product.description || ('\u003c' + (product.name || 'Ürün') + '\u003e için ürün detayları, özellikler ve satın alma seçenekleri.'),
-    image_url: product.image_url || '',
-    download_url: product.download_url || product.file_url || ''
+  const search =
+    document.getElementById('search');
+
+  if(!search){
+    return;
+  }
+
+  search.scrollIntoView({
+    behavior:'smooth',
+    block:'center'
   });
-  window.location.href = 'detail.html?' + params.toString();
+
+  setTimeout(()=>{
+    search.focus();
+    search.select();
+  },350);
+
 }
-function filterCategory(cat,el){active=cat;document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderCards()}
-function updatePrice(v){document.getElementById('priceValue').textContent=money(Number(v));renderCards()}
-function sortCards(){renderCards()}
+
+function openAccount(){
+
+  const modal =
+    document.getElementById('accountModal');
+
+  if(!modal){
+    return;
+  }
+
+  modal.classList.add('open');
+
+  modal.setAttribute(
+    'aria-hidden',
+    'false'
+  );
+
+  document.body.style.overflow =
+    'hidden';
+
+}
+
+function closeAccount(){
+
+  const modal =
+    document.getElementById('accountModal');
+
+  if(!modal){
+    return;
+  }
+
+  modal.classList.remove('open');
+
+  modal.setAttribute(
+    'aria-hidden',
+    'true'
+  );
+
+  document.body.style.overflow =
+    '';
+
+}
+
+document.addEventListener(
+  'keydown',
+  e=>{
+    if(e.key === 'Escape'){
+      closeAccount();
+    }
+  }
+);
+
+function money(n){
+
+  return Number(n).toLocaleString(
+    'tr-TR'
+  ) + ' TL';
+
+}
+
+function renderCards(){
+
+  const search =
+    document.getElementById('search');
+
+  const priceRange =
+    document.getElementById('priceRange');
+
+  const grid =
+    document.getElementById('cardGrid');
+
+  if(!search || !priceRange || !grid){
+    return;
+  }
+
+  const q =
+    search.value.toLowerCase();
+
+  const max =
+    Number(priceRange.value);
+
+  let list =
+    products.filter(
+      p =>
+        (active === 'Tümü' || p.cat === active) &&
+        p.price <= max &&
+        (
+          `${p.name} ${p.cat} ${p.tag}`
+        )
+        .toLowerCase()
+        .includes(q)
+    );
+
+  const sort =
+    document.getElementById('sort').value;
+
+  if(sort === 'low'){
+    list.sort(
+      (a,b)=>a.price-b.price
+    );
+  }
+
+  if(sort === 'high'){
+    list.sort(
+      (a,b)=>b.price-a.price
+    );
+  }
+
+  grid.innerHTML =
+    list.map(
+      p => `
+
+      <article class="card">
+
+        <div class="preview">
+
+          <span class="badge ${p.cls}">
+            ${p.badge}
+          </span>
+
+          <div class="mock-window">
+
+            <div class="mock-top"></div>
+
+            <div class="mock-body">
+
+              <div class="mock-side"></div>
+
+              <div class="mock-main"></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="card-body">
+
+          <h3>
+            ${escapeHtml(p.name)}
+          </h3>
+
+          <span class="tag">
+            ${escapeHtml(p.tag)}
+          </span>
+
+          <div class="features">
+            ${escapeHtml(p.features)}
+          </div>
+
+          <div class="card-bottom">
+
+            <div class="price">
+              ${money(p.price)}
+            </div>
+
+            <button
+              class="details"
+              type="button"
+              onclick='openDetails(${JSON.stringify(p).replace(/'/g,"&#39;")})'
+            >
+              Detayları Gör　→
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    `
+    ).join('') ||
+    '<p>Bu filtrelere uygun ürün bulunamadı.</p>';
+
+}
+
+function escapeHtml(value){
+
+  return String(value ?? '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+
+}
+
+function openDetails(product){
+
+  const params =
+    new URLSearchParams({
+
+      id:
+        product.id ||
+        product.name ||
+        'product',
+
+      name:
+        product.name || '',
+
+      category:
+        product.cat || '',
+
+      tag:
+        product.tag || '',
+
+      price:
+        String(product.price || 0),
+
+      badge:
+        product.badge || '',
+
+      features:
+        product.features || '',
+
+      description:
+        product.description ||
+        (
+          (product.name || 'Ürün') +
+          ' için ürün detayları, özellikler ve satın alma seçenekleri.'
+        ),
+
+      image_url:
+        product.image_url || '',
+
+      download_url:
+        product.download_url ||
+        product.file_url ||
+        ''
+
+    });
+
+  window.location.href =
+    'detail.html?' +
+    params.toString();
+
+}
+
+function filterCategory(cat,el){
+
+  active = cat;
+
+  document
+    .querySelectorAll('.cat')
+    .forEach(
+      x=>x.classList.remove('active')
+    );
+
+  el.classList.add('active');
+
+  renderCards();
+
+}
+
+function updatePrice(v){
+
+  document.getElementById(
+    'priceValue'
+  ).textContent =
+    money(Number(v));
+
+  renderCards();
+
+}
+
+function sortCards(){
+
+  renderCards();
+
+}
+
 renderCards();
+
 loadProductsFromSupabase();
+
 </script>
+
 </body>
 </html>
