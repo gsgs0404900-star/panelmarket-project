@@ -2226,17 +2226,18 @@ img{
     <div class="account-actions">
 
       <!-- MEVCUT GİRİŞ SİSTEMİ -->
-      <a
-  href="https://panelmarket.vercel.app/login.html"
+     <a
+  href="login.html"
   class="account-action account-login">
   Giriş Yap
 </a>
 
 <a
-  href="https://panelmarket.vercel.app/register.html"
+  href="register.html"
   class="account-action account-register">
   Kayıt Ol
 </a>
+ 
 
     </div>
 
@@ -3431,11 +3432,54 @@ function initEvents(){
 
   /* ACCOUNT */
 
-  $("accountButton")
-    ?.addEventListener(
-      "click",
-      openAccount
+  <script>
+/* =========================================================
+   PANELMARKET - HESABIM BUTONU
+========================================================= */
+
+(function(){
+
+  const accountButton =
+    document.getElementById("accountButton");
+
+  if(!accountButton){
+    return;
+  }
+
+  function getAccessToken(){
+
+    return (
+      localStorage.getItem("panelmarket_access_token") ||
+      sessionStorage.getItem("panelmarket_access_token") ||
+      ""
     );
+
+  }
+
+  accountButton.addEventListener(
+    "click",
+    function(){
+
+      const token =
+        getAccessToken();
+
+      if(token){
+
+        window.location.href =
+          "hesabim.html";
+
+      }else{
+
+        window.location.href =
+          "login.html";
+
+      }
+
+    }
+  );
+
+})();
+</script>
 
 
   $("accountClose")
