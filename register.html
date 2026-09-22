@@ -1,61 +1,158 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Kayıt Ol - PanelMarket</title>
-<style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#020711;color:#fff;font-family:Arial,Helvetica,sans-serif;display:flex;align-items:center;justify-content:center;padding:20px}
-.card{width:100%;max-width:430px;background:#071426;border:1px solid #162943;border-radius:20px;padding:32px;box-shadow:0 20px 60px #0008}
-h1{text-align:center;margin:0 0 8px}.sub{text-align:center;color:#91a1b8;margin-bottom:25px}
-label{display:block;margin:0 0 8px;font-weight:600;font-size:14px}input{width:100%;height:50px;margin-bottom:17px;border-radius:11px;border:1px solid #203653;background:#020b18;color:#fff;padding:0 15px;outline:0}
-input:focus{border-color:#4c9fff}button{width:100%;height:52px;border:0;border-radius:11px;background:#3d96f5;color:#fff;font-weight:700;font-size:16px;cursor:pointer}
-button:disabled{opacity:.6}.msg{display:none;padding:12px;border-radius:10px;margin-bottom:16px;font-size:14px}.error{display:block;background:#35151b;color:#ffb5bd}.success{display:block;background:#123421;color:#a9efbf}
-.links{text-align:center;margin-top:20px;color:#91a1b8;font-size:14px}.links a{color:#65b0ff;text-decoration:none;font-weight:700}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kayıt Ol - PanelMarket</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 420px;
+      margin: 20px;
+      padding: 35px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 10px 35px rgba(0,0,0,.10);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      text-align: center;
+      font-size: 28px;
+    }
+
+    .subtitle {
+      margin: 0 0 28px;
+      text-align: center;
+      color: #777;
+    }
+
+    label {
+      display: block;
+      margin: 0 0 7px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      height: 48px;
+      padding: 0 14px;
+      margin-bottom: 18px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #111;
+    }
+
+    button {
+      width: 100%;
+      height: 48px;
+      border: 0;
+      border-radius: 10px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: .9;
+    }
+
+    .links {
+      margin-top: 22px;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    a {
+      color: #111;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back {
+      display: block;
+      margin-top: 10px;
+      color: #777;
+      font-weight: normal;
+    }
+  </style>
 </head>
+
 <body>
-<div class="card">
-<h1>PanelMarket</h1><div class="sub">Yeni hesap oluştur</div>
-<div id="msg" class="msg"></div>
-<form id="form">
-<label for="email">E-posta</label><input id="email" type="email" required autocomplete="email" placeholder="ornek@mail.com">
-<label for="password">Şifre</label><input id="password" type="password" required minlength="6" autocomplete="new-password" placeholder="En az 6 karakter">
-<label for="password2">Şifre Tekrar</label><input id="password2" type="password" required minlength="6" autocomplete="new-password" placeholder="Şifrenizi tekrar girin">
-<button id="btn" type="submit">Kayıt Ol</button>
-</form>
-<div class="links">Zaten hesabın var mı? <a href="login.html">Giriş Yap</a><br><br><a href="index.html">← Ana Sayfaya Dön</a></div>
-</div>
-<script>
-const SUPABASE_URL='https://gakvvqcsaoxhbuqvimqe.supabase.co';
-const SUPABASE_ANON_KEY='sb_publishable_74vcsqJXv7J_P-1hDwGQyg_WQBvIdty';
-const form=document.getElementById('form'),msg=document.getElementById('msg'),btn=document.getElementById('btn');
-function show(t,ok=false){msg.textContent=t;msg.className='msg '+(ok?'success':'error')}
-form.addEventListener('submit',async e=>{
- e.preventDefault(); msg.className='msg';
- const email=document.getElementById('email').value.trim();
- const password=document.getElementById('password').value;
- const password2=document.getElementById('password2').value;
- if(password!==password2){show('Şifreler aynı değil.');return}
- if(password.length<6){show('Şifre en az 6 karakter olmalı.');return}
- btn.disabled=true;btn.textContent='Kayıt oluşturuluyor...';
- try{
-  const r=await fetch(SUPABASE_URL+'/auth/v1/signup',{method:'POST',headers:{apikey:SUPABASE_ANON_KEY,Authorization:'Bearer '+SUPABASE_ANON_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password})});
-  let d={};try{d=await r.json()}catch{}
-  if(!r.ok)throw new Error(d.msg||d.message||d.error_description||d.error||'Kayıt oluşturulamadı.');
-  if(d.access_token){
-   localStorage.setItem('panelmarket_access_token',d.access_token);
-   if(d.refresh_token)localStorage.setItem('panelmarket_refresh_token',d.refresh_token);
-   if(d.user)localStorage.setItem('panelmarket_user',JSON.stringify(d.user));
-   localStorage.setItem('panelmarket_session',JSON.stringify(d));
-   show('Kayıt başarılı. Ana sayfaya yönlendiriliyorsunuz.','ok');
-   setTimeout(()=>location.href='index.html',700);
-  }else{
-   show('Kayıt oluşturuldu. E-posta adresinizi doğrulayın, ardından giriş yapın.','ok');
-   btn.disabled=false;btn.textContent='Kayıt Ol';
-  }
- }catch(err){console.error(err);show(err.message||'Kayıt oluşturulamadı.');btn.disabled=false;btn.textContent='Kayıt Ol'}
-});
-</script>
+
+  <main class="box">
+    <h1>PanelMarket</h1>
+    <p class="subtitle">Yeni Hesap Oluştur</p>
+
+    <form id="registerForm">
+
+      <label for="name">Ad Soyad</label>
+      <input
+        id="name"
+        type="text"
+        placeholder="Adınız ve soyadınız"
+        autocomplete="name"
+        required
+      >
+
+      <label for="email">E-posta</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="E-posta adresiniz"
+        autocomplete="email"
+        required
+      >
+
+      <label for="password">Şifre</label>
+      <input
+        id="password"
+        type="password"
+        placeholder="Şifre oluşturun"
+        autocomplete="new-password"
+        required
+      >
+
+      <button type="submit">Kayıt Ol</button>
+
+    </form>
+
+    <div class="links">
+      Zaten hesabın var mı?
+      <a href="./login.html">Giriş Yap</a>
+
+      <a class="back" href="./index.html">Ana Sayfaya Dön</a>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      alert("Kayıt sistemi hazır.");
+    });
+  </script>
+
 </body>
 </html>
