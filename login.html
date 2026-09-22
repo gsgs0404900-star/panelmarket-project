@@ -1,230 +1,199 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Giriş Yap - PanelMarket</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;min-height:100%}
-body{background:#020711;color:#fff;font-family:Arial,Helvetica,sans-serif}
-a{color:inherit;text-decoration:none}
-.container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-.card{width:100%;max-width:430px;background:#071426;border:1px solid #162943;border-radius:20px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
-.logo{text-align:center;font-size:30px;font-weight:800;margin-bottom:8px}
-.subtitle{text-align:center;color:#91a1b8;font-size:14px;margin-bottom:28px}
-.form-group{margin-bottom:18px}
-label{display:block;margin-bottom:8px;color:#dbe5f2;font-size:14px;font-weight:600}
-.input-wrap{position:relative}
-input{width:100%;height:50px;border-radius:11px;border:1px solid #203653;background:#020b18;color:#fff;padding:0 15px;outline:none;font-size:15px;transition:.2s}
-input:focus{border-color:#4c9fff;box-shadow:0 0 0 3px rgba(76,159,255,.10)}
-.password-input{padding-right:52px}
-.show-password{position:absolute;right:0;top:0;height:50px;width:50px;border:0;background:none;color:#8fa3bc;cursor:pointer;font-size:18px}
-.show-password:hover{color:#fff}
-.forgot{text-align:right;margin-top:-5px;margin-bottom:20px}
-.forgot button{border:0;background:none;color:#65b0ff;cursor:pointer;font-size:13px}
-.login-btn{width:100%;height:52px;border:0;border-radius:11px;background:#3d96f5;color:#fff;font-size:16px;font-weight:700;cursor:pointer;transition:.2s}
-.login-btn:hover{background:#3188e7}
-.login-btn:disabled{opacity:.6;cursor:not-allowed}
-.register{text-align:center;margin-top:22px;color:#91a1b8;font-size:14px}
-.register a{color:#65b0ff;font-weight:700}
-.back{text-align:center;margin-top:22px}
-.back a{color:#91a1b8;font-size:13px}
-.back a:hover{color:#fff}
-.message{display:none;padding:12px 14px;border-radius:10px;margin-bottom:18px;font-size:14px;line-height:1.4}
-.message.error{display:block;background:#35151b;border:1px solid #71303a;color:#ffb5bd}
-.message.success{display:block;background:#123421;border:1px solid #24663d;color:#a9efbf}
-.loading{display:inline-flex;align-items:center;gap:8px}
-.spinner{width:17px;height:17px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:480px){
-.container{padding:16px}
-.card{padding:24px 20px;border-radius:16px}
-.logo{font-size:27px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giriş Yap - PanelMarket</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, #173d72 0%, #071426 45%, #030811 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 430px;
+      background: rgba(9, 23, 43, 0.96);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 22px;
+      padding: 35px 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #aebbd0;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #dbe5f3;
+    }
+
+    input {
+      width: 100%;
+      height: 50px;
+      border: 1px solid #31445f;
+      border-radius: 12px;
+      background: #0b1a30;
+      color: white;
+      padding: 0 15px;
+      outline: none;
+      margin-bottom: 18px;
+      font-size: 15px;
+    }
+
+    input:focus {
+      border-color: #4d9cff;
+      box-shadow: 0 0 0 3px rgba(77,156,255,.12);
+    }
+
+    .button {
+      width: 100%;
+      height: 50px;
+      border: 0;
+      border-radius: 12px;
+      background: #1677ff;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: #0869ec;
+    }
+
+    .message {
+      min-height: 22px;
+      margin-top: 15px;
+      text-align: center;
+      color: #ffb4b4;
+      font-size: 14px;
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 22px;
+      color: #aebbd0;
+      font-size: 14px;
+    }
+
+    .links a {
+      color: #5ca7ff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #aebbd0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back:hover {
+      color: white;
+    }
+  </style>
 </head>
+
 <body>
-<div class="container">
-<div class="card">
-<div class="logo">PanelMarket</div>
-<div class="subtitle">Hesabına giriş yap</div>
-<div id="message" class="message"></div>
 
-<form id="loginForm">
-<div class="form-group">
-<label for="email">E-posta</label>
-<input id="email" type="email" placeholder="ornek@mail.com" autocomplete="email" required>
-</div>
+  <div class="box">
 
-<div class="form-group">
-<label for="password">Şifre</label>
-<div class="input-wrap">
-<input id="password" class="password-input" type="password" placeholder="Şifrenizi girin" autocomplete="current-password" required>
-<button type="button" class="show-password" id="showPassword" aria-label="Şifreyi göster">👁</button>
-</div>
-</div>
+    <div class="logo">PanelMarket</div>
+    <div class="subtitle">Hesabınıza giriş yapın</div>
 
-<div class="forgot">
-<button type="button" id="forgotPassword">Şifremi unuttum</button>
-</div>
+    <form id="loginForm">
 
-<button type="submit" class="login-btn" id="loginButton">Giriş Yap</button>
-</form>
+      <label for="email">E-posta</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="E-posta adresiniz"
+        autocomplete="email"
+        required
+      >
 
-<div class="register">Hesabın yok mu? <a href="register.html">Kayıt Ol</a></div>
-<div class="back"><a href="index.html">← Ana Sayfaya Dön</a></div>
-</div>
-</div>
+      <label for="password">Şifre</label>
+      <input
+        id="password"
+        type="password"
+        placeholder="Şifreniz"
+        autocomplete="current-password"
+        required
+      >
 
-<script>
-const SUPABASE_URL = 'https://gakvvqcsaoxhbuqvimqe.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_74vcsqJXv7J_P-1hDwGQyg_WQBvIdty';
+      <button class="button" type="submit">
+        Giriş Yap
+      </button>
 
-const loginForm = document.getElementById('loginForm');
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
-const loginButton = document.getElementById('loginButton');
-const showPassword = document.getElementById('showPassword');
-const forgotPassword = document.getElementById('forgotPassword');
-const message = document.getElementById('message');
+      <div class="message" id="message"></div>
 
-function showMessage(text,type='error'){
-    message.textContent=text;
-    message.className='message '+type;
-}
-function clearMessage(){
-    message.textContent='';
-    message.className='message';
-}
+    </form>
 
-async function supabaseRequest(path,options={}){
-    const response=await fetch(SUPABASE_URL+path,{
-        ...options,
-        headers:{
-            apikey:SUPABASE_ANON_KEY,
-            Authorization:'Bearer '+SUPABASE_ANON_KEY,
-            'Content-Type':'application/json',
-            ...(options.headers||{})
-        }
+    <div class="links">
+      Hesabınız yok mu?
+      <a href="./register.html">Kayıt Ol</a>
+    </div>
+
+    <a class="back" href="./index.html">
+      ← Ana Sayfaya Dön
+    </a>
+
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (!email || !password) {
+        message.textContent = "Lütfen e-posta ve şifrenizi girin.";
+        return;
+      }
+
+      /*
+       * Buraya mevcut giriş sistemin bağlanabilir.
+       * Sayfanın Vercel'de açılması için herhangi bir
+       * sunucu isteği zorunlu değildir.
+       */
+
+      message.style.color = "#9dffbd";
+      message.textContent = "Giriş bilgileri gönderilmeye hazır.";
     });
+  </script>
 
-    let data=null;
-    try{data=await response.json()}catch{data=null}
-
-    if(!response.ok){
-        const error=data?.msg||data?.message||data?.error_description||data?.error||'Bir hata oluştu.';
-        throw new Error(error);
-    }
-    return data;
-}
-
-function saveSession(data){
-    if(!data)return;
-
-    if(data.access_token) localStorage.setItem('panelmarket_access_token',data.access_token);
-    if(data.refresh_token) localStorage.setItem('panelmarket_refresh_token',data.refresh_token);
-    if(data.expires_in) localStorage.setItem('panelmarket_expires_in',String(data.expires_in));
-    if(data.user) localStorage.setItem('panelmarket_user',JSON.stringify(data.user));
-
-    localStorage.setItem('panelmarket_session',JSON.stringify(data));
-}
-
-loginForm.addEventListener('submit',async function(event){
-    event.preventDefault();
-    clearMessage();
-
-    const email=emailInput.value.trim();
-    const password=passwordInput.value;
-
-    if(!email){
-        showMessage('Lütfen e-posta adresinizi girin.');
-        return;
-    }
-    if(!password){
-        showMessage('Lütfen şifrenizi girin.');
-        return;
-    }
-
-    loginButton.disabled=true;
-    loginButton.innerHTML='<span class="loading"><span class="spinner"></span>Giriş yapılıyor...</span>';
-
-    try{
-        const data=await supabaseRequest('/auth/v1/token?grant_type=password',{
-            method:'POST',
-            body:JSON.stringify({email:email,password:password})
-        });
-
-        saveSession(data);
-
-        showMessage('Giriş başarılı. Yönlendiriliyorsunuz...','success');
-
-        setTimeout(function(){
-            window.location.href='index.html';
-        },700);
-
-    }catch(error){
-        console.error('Giriş hatası:',error);
-
-        let errorText=error.message||'Giriş yapılamadı.';
-        const lower=errorText.toLowerCase();
-
-        if(lower.includes('invalid login')){
-            errorText='E-posta veya şifre hatalı.';
-        }else if(lower.includes('email not confirmed')){
-            errorText='E-posta adresiniz henüz doğrulanmamış.';
-        }
-
-        showMessage(errorText);
-        loginButton.disabled=false;
-        loginButton.textContent='Giriş Yap';
-    }
-});
-
-showPassword.addEventListener('click',function(){
-    if(passwordInput.type==='password'){
-        passwordInput.type='text';
-        showPassword.textContent='🙈';
-    }else{
-        passwordInput.type='password';
-        showPassword.textContent='👁';
-    }
-});
-
-forgotPassword.addEventListener('click',async function(){
-    clearMessage();
-
-    const email=emailInput.value.trim();
-
-    if(!email){
-        showMessage('Şifre sıfırlama bağlantısı için önce e-posta adresinizi yazın.');
-        emailInput.focus();
-        return;
-    }
-
-    forgotPassword.disabled=true;
-
-    try{
-        await supabaseRequest('/auth/v1/recover',{
-            method:'POST',
-            body:JSON.stringify({email:email})
-        });
-
-        showMessage('Şifre sıfırlama bağlantısı e-posta adresinize gönderildi.','success');
-    }catch(error){
-        console.error('Şifre sıfırlama hatası:',error);
-        showMessage(error.message||'Şifre sıfırlama işlemi başarısız.');
-    }finally{
-        forgotPassword.disabled=false;
-    }
-});
-
-(function(){
-    const token=localStorage.getItem('panelmarket_access_token');
-    if(token){
-        window.location.href='index.html';
-    }
-})();
-</script>
 </body>
 </html>
