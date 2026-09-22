@@ -4,180 +4,1092 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hesabım - PanelMarket</title>
+
 <style>
-
 :root{
-  --bg:#020711;--panel:#071426;--panel2:#0a1a31;--line:#183457;
-  --text:#eef5ff;--muted:#91a7c6;--blue:#1595ff;--purple:#8056ff;
-  --green:#23d5a0;--orange:#ffad39;
+  --bg:#020711;
+  --panel:#071426;
+  --panel2:#0a1a31;
+  --line:#183457;
+  --text:#eef5ff;
+  --muted:#91a7c6;
+  --blue:#1595ff;
+  --purple:#8056ff;
+  --green:#23d5a0;
+  --orange:#ffad39;
+  --red:#ff4d67;
 }
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 50% -10%,#102d57 0,#020711 48%);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
-a{text-decoration:none;color:inherit}
-button,input,select{font:inherit}
-.container{width:min(1540px,calc(100% - 42px));margin:auto}
-.nav{margin:18px auto 0;border:1px solid #27456f;background:rgba(5,16,34,.92);border-radius:22px;display:flex;align-items:center;gap:28px;padding:13px 24px;box-shadow:0 12px 45px #0006;position:sticky;top:12px;z-index:5;backdrop-filter:blur(16px)}
-.logo{font-size:27px;font-weight:900;letter-spacing:-1.4px;white-space:nowrap}
-.logo span{color:#42aaff}
-.logo i{font-style:normal;color:#fff}
-.navlinks{display:flex;align-items:center;gap:26px;margin-left:auto}
-.navlinks a{font-size:14px;color:#b8c9e3}
-.navlinks a.active{color:#fff;border-bottom:2px solid var(--blue);padding-bottom:17px;margin-bottom:-17px}
-.nav-actions{display:flex;gap:10px;align-items:center}
-.iconbtn,.account{background:#0a1930;border:1px solid #213b60;color:#dceaff;border-radius:13px;padding:11px 14px}
-.hero{margin-top:18px;border:1px solid #16477d;border-radius:20px;min-height:275px;padding:36px 85px;display:flex;align-items:center;justify-content:space-between;overflow:hidden;position:relative;background:linear-gradient(115deg,#06152d,#09204a 55%,#07152b)}
-.hero:before{content:"";position:absolute;inset:-80px 35% -100px -10%;background:radial-gradient(ellipse,#1168d766,transparent 68%);pointer-events:none}
-.hero-content{position:relative;z-index:1;max-width:650px}
-.pills{display:flex;gap:14px;color:#b9d4f8;font-size:13px;margin-bottom:18px}
-h1{font-size:48px;line-height:1.05;margin:0 0 18px;letter-spacing:-2px}
-h1 span{color:#259eff}
-.hero p{color:#b4c7e3;font-size:17px;line-height:1.6;margin:0 0 22px}
-.btn{border:1px solid #2775ff;background:linear-gradient(135deg,#138fff,#2365ff);color:white;padding:14px 22px;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px #006eff30}
-.btn.alt{background:#10152e;border-color:#8751ff;margin-left:10px}
-.hero-art{width:43%;height:220px;position:relative;display:flex;align-items:center;justify-content:center}
-.screen{border:2px solid #345e9b;border-radius:12px;background:linear-gradient(145deg,#0b2448,#071021);box-shadow:0 0 45px #126eff55;position:absolute;padding:18px}
-.screen.main{width:330px;height:190px;transform:rotate(-3deg);z-index:2}
-.screen.back{width:230px;height:145px;right:0;transform:rotate(8deg);opacity:.8}
-.screen h3{font-size:13px;margin:0 0 16px}
-.chart{height:75px;display:flex;align-items:end;gap:7px}
-.chart b{display:block;width:18px;border-radius:4px 4px 0 0;background:linear-gradient(#5f6dff,#159cff)}
-.dots{display:flex;gap:7px;margin-bottom:14px}
-.dots i{width:7px;height:7px;border-radius:50%;background:#3b78c8}
-.layout{display:grid;grid-template-columns:265px 1fr;gap:20px;margin:20px 0 60px}
-.sidebar,.toolbar,.card{border:1px solid var(--line);background:linear-gradient(150deg,#07172c,#041022);border-radius:16px}
-.sidebar{padding:20px;height:max-content}
-.side-title{font-weight:800;margin-bottom:18px}
-.categories{display:grid;gap:8px}
-.cat{display:flex;justify-content:space-between;gap:8px;padding:11px 12px;border-radius:11px;color:#a8bdd9;font-size:14px;cursor:pointer}
-.cat.active{background:linear-gradient(90deg,#0d55c8,#123b8d);color:white}
-.cat span{background:#102a4e;border-radius:20px;padding:2px 8px;font-size:11px}
-.range{margin-top:25px;border-top:1px solid #1c3659;padding-top:20px}
-.range input{width:100%;accent-color:#2d91ff}
-.range-values{display:flex;justify-content:space-between;color:#b7c9e3;font-size:12px;margin-top:10px}
-.content{min-width:0}
-.toolbar{padding:12px;display:flex;gap:12px;justify-content:space-between;align-items:center;margin-bottom:12px}
-select,.search{background:#0a1a31;border:1px solid #254467;color:#dbeaff;border-radius:11px;padding:12px 14px;outline:none}
-.search{width:min(360px,45%)}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.card{padding:10px;overflow:hidden;transition:.2s;position:relative}
-.card:hover{transform:translateY(-4px);border-color:#347bd0}
-.preview{height:155px;border:1px solid #315174;border-radius:10px;overflow:hidden;position:relative;background:#08172d}
-.preview:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 60% 20%,#254e9c,transparent 60%)}
-.mock-window{position:absolute;left:12%;right:12%;top:20px;bottom:0;background:#0b2341;border:1px solid #4c78a9;border-radius:7px 7px 0 0;padding:10px}
-.mock-top{height:10px;background:#21466e;border-radius:4px;margin-bottom:12px}
-.mock-body{display:grid;grid-template-columns:28% 1fr;gap:9px;height:90px}
-.mock-side{background:#102e51;border-radius:4px}
-.mock-main{background:linear-gradient(145deg,#173e6c,#10223e);border-radius:4px;position:relative}
-.mock-main:after{content:"";position:absolute;left:12px;right:12px;bottom:13px;height:35px;background:linear-gradient(90deg,#278fff 35%,#5b55ff 35% 65%,#23d5a0 65%);opacity:.75;border-radius:4px}
-.badge{position:absolute;right:8px;top:8px;border-radius:20px;padding:5px 9px;font-size:10px;font-weight:800;background:#6d4cff}
-.badge.green{background:#19a982}.badge.orange{background:#e58b23}
-.card-body{padding:9px 3px 2px}
-.card h3{font-size:15px;margin:0 0 8px}
-.tag{display:inline-block;font-size:10px;background:#14508c;color:#a8ddff;border-radius:20px;padding:4px 8px;margin-bottom:10px}
-.features{display:flex;gap:10px;color:#92a9c7;font-size:10px;white-space:nowrap;overflow:hidden}
-.card-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
-.price{font-size:20px;color:#25a0ff;font-weight:900}
-.details{font-size:11px;padding:9px 12px;border:1px solid #4369ff;border-radius:20px;color:#dfe8ff;background:#0a1731;cursor:pointer}
-@media(max-width:1100px){.navlinks{gap:12px}.hero{padding:30px}.hero-art{width:38%}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){.container{width:calc(100% - 20px)}.nav{padding:12px;gap:12px}.navlinks{display:none}.hero{padding:25px;display:block}.hero-art{width:100%;height:150px;margin-top:20px}.hero h1{font-size:34px}.layout{grid-template-columns:1fr}.sidebar{display:none}.toolbar{flex-wrap:wrap}.search{width:100%}.grid{grid-template-columns:1fr}.hero .btn{padding:12px 14px}}
 
-.about-section{
-  margin:26px 0 0;
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  min-height:100%;
+}
+
+body{
+  background:
+    radial-gradient(circle at 50% -10%,#102d57 0,#020711 48%);
+  color:var(--text);
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button,input,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.container{
+  width:min(1540px,calc(100% - 42px));
+  margin:auto;
+}
+
+/* NAV */
+.nav{
+  margin:18px auto 0;
+  border:1px solid #27456f;
+  background:rgba(5,16,34,.92);
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  gap:28px;
+  padding:13px 24px;
+  box-shadow:0 12px 45px #0006;
+  position:sticky;
+  top:12px;
+  z-index:5;
+  backdrop-filter:blur(16px);
+}
+
+.logo{
+  font-size:27px;
+  font-weight:900;
+  letter-spacing:-1.4px;
+  white-space:nowrap;
+}
+
+.logo span{
+  color:#42aaff;
+}
+
+.logo i{
+  font-style:normal;
+  color:#fff;
+}
+
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:26px;
+  margin-left:auto;
+}
+
+.navlinks a{
+  font-size:14px;
+  color:#b8c9e3;
+}
+
+.navlinks a.active{
+  color:#fff;
+  border-bottom:2px solid var(--blue);
+  padding-bottom:17px;
+  margin-bottom:-17px;
+}
+
+.nav-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.iconbtn,
+.account{
+  background:#0a1930;
+  border:1px solid #213b60;
+  color:#dceaff;
+  border-radius:13px;
+  padding:11px 14px;
+}
+
+/* PAGE */
+.page{
+  margin:26px 0 60px;
+}
+
+.page-card{
   border:1px solid #27456f;
   background:linear-gradient(150deg,#07172c,#041022);
   border-radius:22px;
-  padding:28px;
+  padding:32px;
+  box-shadow:0 14px 45px #0003;
+}
+
+.about-kicker{
+  color:#42aaff;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1.4px;
+}
+
+.page-card h1{
+  margin:7px 0 12px;
+  font-size:38px;
+}
+
+.page-card>p{
+  color:#91a7c6;
+  line-height:1.7;
+}
+
+/* LOGIN REQUIRED */
+.auth-loading{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:220px;
+  color:#91a7c6;
+}
+
+.spinner{
+  width:28px;
+  height:28px;
+  border:3px solid #24466e;
+  border-top-color:#1595ff;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+  margin-right:12px;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* ACCOUNT */
+.account-content{
+  display:none;
+}
+
+.account-content.show{
+  display:block;
+}
+
+.profile-box{
+  margin-top:24px;
   display:grid;
-  grid-template-columns:minmax(0,1fr) 330px;
+  grid-template-columns:130px 1fr;
   gap:24px;
   align-items:center;
-  box-shadow:0 14px 45px #0003;
-  scroll-margin-top:110px;
+  background:linear-gradient(145deg,#0a1930,#061224);
+  border:1px solid #315276;
+  border-radius:20px;
+  padding:24px;
 }
-.about-kicker{color:#42aaff;font-size:12px;font-weight:900;letter-spacing:1.4px}
-.about-section h2{font-size:30px;margin:7px 0 10px}
-.about-section p{color:#91a7c6;line-height:1.65;max-width:760px;margin:0}
-.about-points{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}
-.about-points span{
-  background:#0a1a31;border:1px solid #254467;border-radius:999px;
-  padding:8px 11px;color:#c8d8ed;font-size:12px
+
+.profile-avatar{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#138fff,#8056ff);
+  border:3px solid #274d7d;
+  font-size:45px;
+  font-weight:900;
+  color:white;
 }
-.about-card{
-  border:1px solid #315276;background:linear-gradient(145deg,#0b2341,#071326);
-  border-radius:17px;padding:21px;display:flex;flex-direction:column;gap:9px
+
+.profile-info h2{
+  margin:0 0 8px;
+  font-size:25px;
 }
-.about-card strong{font-size:18px}
-.about-card span{color:#91a7c6;font-size:13px;line-height:1.5}
-.about-card .details{align-self:flex-start;margin-top:8px}
-.account-modal{
-  position:fixed;inset:0;display:none;align-items:center;justify-content:center;
-  z-index:1000;padding:20px
+
+.profile-email{
+  color:#91a7c6;
+  font-size:14px;
+  word-break:break-word;
 }
-.account-modal.open{display:flex}
-.account-backdrop{position:absolute;inset:0;background:#000b;backdrop-filter:blur(8px)}
-.account-box{
-  position:relative;width:min(420px,100%);padding:28px;border-radius:22px;
-  border:1px solid #315276;background:linear-gradient(150deg,#0a1e39,#040c18);
-  box-shadow:0 25px 90px #000b;z-index:1
+
+.profile-status{
+  display:inline-flex;
+  margin-top:13px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#0b4a3b;
+  border:1px solid #197c63;
+  color:#54e5bd;
+  font-size:11px;
+  font-weight:800;
 }
-.account-close{
-  position:absolute;right:13px;top:11px;width:38px;height:38px;border-radius:12px;
-  border:1px solid #27456f;background:#0a1930;color:#dceaff;font-size:25px;cursor:pointer
+
+.account-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px;
+  margin-top:18px;
 }
-.account-icon{
-  width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
-  background:linear-gradient(135deg,#138fff,#2365ff);font-size:25px;margin-bottom:16px
+
+.account-item{
+  background:#0a1930;
+  border:1px solid #315276;
+  border-radius:16px;
+  padding:20px;
 }
-.account-box h2{margin:7px 0 8px;font-size:28px}
-.account-box p{color:#91a7c6;line-height:1.55;margin:0 0 20px}
-.account-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.account-actions .btn{text-align:center}
+
+.account-item .item-icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:#102c50;
+  border:1px solid #28517e;
+  margin-bottom:14px;
+  font-size:20px;
+}
+
+.account-item h3{
+  margin:0 0 7px;
+  font-size:16px;
+}
+
+.account-item p{
+  margin:0;
+  color:#91a7c6;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.account-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:24px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #2775ff;
+  background:linear-gradient(135deg,#138fff,#2365ff);
+  color:white;
+  padding:13px 20px;
+  border-radius:14px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.btn.alt{
+  background:#10152e;
+  border-color:#8751ff;
+}
+
+.btn.danger{
+  background:linear-gradient(135deg,#c9344f,#8e1e38);
+  border-color:#ff526e;
+}
+
+/* LOGGED OUT */
+.logged-out{
+  display:none;
+}
+
+.logged-out.show{
+  display:block;
+}
+
+.page-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:22px;
+}
+
+.page-item{
+  background:#0a1930;
+  border:1px solid #315276;
+  border-radius:16px;
+  padding:20px;
+}
+
+.page-item h3{
+  margin:0 0 8px;
+}
+
+.page-item p{
+  margin:0 0 14px;
+  color:#91a7c6;
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,20px);
+  background:#0b1c33;
+  border:1px solid #315276;
+  color:#eef5ff;
+  padding:13px 18px;
+  border-radius:13px;
+  box-shadow:0 15px 50px #0009;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:9999;
+  max-width:calc(100% - 30px);
+  text-align:center;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* MOBILE */
+@media(max-width:1100px){
+  .navlinks{
+    gap:12px;
+  }
+}
+
 @media(max-width:760px){
-  .about-section{grid-template-columns:1fr;padding:22px}
-  .about-section h2{font-size:25px}
-  .account-actions{grid-template-columns:1fr}
+
+  .container{
+    width:calc(100% - 20px);
+  }
+
+  .nav{
+    padding:12px;
+    gap:12px;
+  }
+
+  .navlinks{
+    display:none;
+  }
+
+  .logo{
+    font-size:23px;
+  }
+
+  .nav-actions{
+    margin-left:auto;
+  }
+
+  .iconbtn,
+  .account{
+    padding:10px 11px;
+  }
+
+  .page-card{
+    padding:22px;
+  }
+
+  .page-card h1{
+    font-size:30px;
+  }
+
+  .profile-box{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .profile-avatar{
+    margin:auto;
+  }
+
+  .account-grid{
+    grid-template-columns:1fr;
+  }
+
+  .page-grid{
+    grid-template-columns:1fr;
+  }
+
+  .account-actions{
+    flex-direction:column;
+  }
+
+  .account-actions .btn{
+    width:100%;
+  }
 }
-
-
-.page { margin:26px 0 60px; }
-.page-card { border:1px solid #27456f; background:linear-gradient(150deg,#07172c,#041022); border-radius:22px; padding:32px; box-shadow:0 14px 45px #0003; }
-.page-card h1 { margin:0 0 12px; font-size:38px; }
-.page-card p { color:#91a7c6; line-height:1.7; }
-.page-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:22px; }
-.page-item { background:#0a1930; border:1px solid #315276; border-radius:16px; padding:20px; }
-.page-item h3 { margin:0 0 8px; }
-.page-item p { margin:0 0 14px; font-size:13px; }
-.navlinks a.active { color:#fff; border-bottom:2px solid var(--blue); padding-bottom:17px; margin-bottom:-17px; }
-@media(max-width:760px){.navlinks{display:none}.page-card{padding:22px}.page-card h1{font-size:30px}}
 </style>
 </head>
+
 <body>
+
 <div class="container">
-<nav class="nav">
-<div class="logo"><span>◢</span> Panel<i>Market</i></div>
-<div class="navlinks">
-<a href="index.html">⌂ Anasayfa</a>
-<a href="paneller.html">▦ Paneller</a>
-<a href="kategoriler.html">▦ Kategoriler</a>
-<a href="fiyatlar.html">◉ Fiyatlar</a>
-<a href="hakkimizda.html">▥ Hakkımızda</a>
-<a href="support.html">♧ Destek</a>
+
+  <nav class="nav">
+
+    <div class="logo">
+      <span>◢</span> Panel<i>Market</i>
+    </div>
+
+    <div class="navlinks">
+      <a href="index.html">⌂ Anasayfa</a>
+      <a href="paneller.html">▦ Paneller</a>
+      <a href="kategoriler.html">▦ Kategoriler</a>
+      <a href="fiyatlar.html">◉ Fiyatlar</a>
+      <a href="hakkimizda.html">▥ Hakkımızda</a>
+      <a href="support.html">♧ Destek</a>
+    </div>
+
+    <div class="nav-actions">
+      <button
+        class="iconbtn"
+        type="button"
+        onclick="window.location.href='index.html#search'">
+        ⌕
+      </button>
+
+      <button
+        class="account"
+        type="button"
+        onclick="window.location.href='hesabim.html'">
+        ♙ Hesabım
+      </button>
+    </div>
+
+  </nav>
+
+
+  <div class="page">
+
+    <div class="page-card">
+
+      <div class="about-kicker">
+        PANELMARKET HESAP
+      </div>
+
+      <h1>♙ Hesabım</h1>
+
+      <!-- YÜKLENİYOR -->
+      <div id="loading" class="auth-loading">
+        <div class="spinner"></div>
+        Hesap bilgileri kontrol ediliyor...
+      </div>
+
+
+      <!-- GİRİŞ YAPILMIŞ -->
+      <div id="accountContent" class="account-content">
+
+        <p>
+          PanelMarket hesabınızın bilgileri aşağıda görüntülenmektedir.
+        </p>
+
+        <div class="profile-box">
+
+          <div
+            class="profile-avatar"
+            id="profileAvatar">
+            ?
+          </div>
+
+          <div class="profile-info">
+
+            <h2 id="userName">
+              PanelMarket Kullanıcısı
+            </h2>
+
+            <div
+              class="profile-email"
+              id="userEmail">
+              -
+            </div>
+
+            <div class="profile-status">
+              ● Giriş yapılmış
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="account-grid">
+
+          <div class="account-item">
+
+            <div class="item-icon">
+              👤
+            </div>
+
+            <h3>Profil Bilgileri</h3>
+
+            <p>
+              PanelMarket hesabınızın ad ve e-posta bilgilerini
+              görüntüleyebilirsiniz.
+            </p>
+
+          </div>
+
+
+          <div class="account-item">
+
+            <div class="item-icon">
+              🛒
+            </div>
+
+            <h3>Satın Aldıklarım</h3>
+
+            <p>
+              Satın aldığınız panel ve temalar burada
+              görüntülenecektir.
+            </p>
+
+          </div>
+
+
+          <div class="account-item">
+
+            <div class="item-icon">
+              🔐
+            </div>
+
+            <h3>Güvenli Oturum</h3>
+
+            <p>
+              Hesabınız Supabase Auth sistemi üzerinden
+              güvenli şekilde yönetilmektedir.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="account-actions">
+
+          <a
+            class="btn"
+            href="index.html">
+            ← Alışverişe Devam Et
+          </a>
+
+          <button
+            class="btn danger"
+            id="logoutButton"
+            type="button">
+            Çıkış Yap
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- GİRİŞ YAPILMAMIŞ -->
+      <div id="loggedOut" class="logged-out">
+
+        <p>
+          Hesabınızı kullanabilmek için giriş yapmanız
+          veya yeni bir hesap oluşturmanız gerekiyor.
+        </p>
+
+        <div class="page-grid">
+
+          <div class="page-item">
+
+            <h3>Giriş Yap</h3>
+
+            <p>
+              Mevcut PanelMarket hesabınıza giriş yapın.
+            </p>
+
+            <a
+              class="btn"
+              href="login.html">
+              Giriş Yap
+            </a>
+
+          </div>
+
+
+          <div class="page-item">
+
+            <h3>Kayıt Ol</h3>
+
+            <p>
+              Yeni PanelMarket hesabınızı oluşturun.
+            </p>
+
+            <a
+              class="btn alt"
+              href="register.html">
+              Kayıt Ol
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
-<div class="nav-actions">
-<button class="iconbtn" type="button" onclick="window.location.href='index.html#search'">⌕</button>
-<button class="account" type="button" onclick="window.location.href='hesabim.html'">♙ Hesabım</button>
+
+
+<div
+  id="toast"
+  class="toast">
 </div>
-</nav>
-<div class="page">
-<div class="page-card">
-<div class="about-kicker">PANELMARKET HESAP</div>
-<h1>♙ Hesabım</h1>
-<p>Hesap işlemleri için aşağıdaki seçeneklerden birini kullanın.</p>
-<div class="page-grid">
-<div class="page-item"><h3>Giriş Yap</h3><p>Mevcut hesabınıza giriş yapın.</p><a class="btn" href="login.html">Giriş Yap</a></div>
-<div class="page-item"><h3>Kayıt Ol</h3><p>Yeni PanelMarket hesabınızı oluşturun.</p><a class="btn alt" href="register.html">Kayıt Ol</a></div>
-</div>
-</div></div>
-</div>
+
+
+<script>
+/* =========================================================
+   PANELMARKET - SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+  "https://gakvvqcsaoxhbuqvimqe.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "sb_publishable_74vcsqJXv7J_P-1hDwGQyg_WQBvIdty";
+
+
+/* =========================================================
+   ELEMENTLER
+========================================================= */
+
+const loading =
+  document.getElementById("loading");
+
+const accountContent =
+  document.getElementById("accountContent");
+
+const loggedOut =
+  document.getElementById("loggedOut");
+
+const userName =
+  document.getElementById("userName");
+
+const userEmail =
+  document.getElementById("userEmail");
+
+const profileAvatar =
+  document.getElementById("profileAvatar");
+
+const logoutButton =
+  document.getElementById("logoutButton");
+
+const toastElement =
+  document.getElementById("toast");
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+function toast(message){
+
+  clearTimeout(toastTimer);
+
+  toastElement.textContent = message;
+
+  toastElement.classList.add("show");
+
+  toastTimer = setTimeout(() => {
+    toastElement.classList.remove("show");
+  }, 2800);
+}
+
+
+/* =========================================================
+   TOKEN
+========================================================= */
+
+function getAccessToken(){
+
+  return (
+    localStorage.getItem("panelmarket_access_token") ||
+    sessionStorage.getItem("panelmarket_access_token") ||
+    ""
+  );
+
+}
+
+
+/* =========================================================
+   KAYITLI USER
+========================================================= */
+
+function getSavedUser(){
+
+  try{
+
+    const raw =
+      localStorage.getItem("panelmarket_user");
+
+    if(!raw){
+      return null;
+    }
+
+    return JSON.parse(raw);
+
+  }catch(error){
+
+    return null;
+
+  }
+
+}
+
+
+/* =========================================================
+   SUPABASE USER
+========================================================= */
+
+async function getSupabaseUser(){
+
+  const token = getAccessToken();
+
+  if(!token){
+    return null;
+  }
+
+  try{
+
+    const response =
+      await fetch(
+        SUPABASE_URL +
+        "/auth/v1/user",
+        {
+          method:"GET",
+          headers:{
+            "apikey":SUPABASE_ANON_KEY,
+            "Authorization":"Bearer " + token
+          }
+        }
+      );
+
+    if(!response.ok){
+
+      return null;
+
+    }
+
+    return await response.json();
+
+  }catch(error){
+
+    console.error(
+      "Supabase kullanıcı kontrolü:",
+      error
+    );
+
+    return null;
+
+  }
+
+}
+
+
+/* =========================================================
+   İSİM
+========================================================= */
+
+function getUserName(user){
+
+  const metadata =
+    user?.user_metadata || {};
+
+  return (
+    metadata.full_name ||
+    metadata.name ||
+    metadata.fullName ||
+    user?.email?.split("@")[0] ||
+    "PanelMarket Kullanıcısı"
+  );
+
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+function getInitial(name){
+
+  if(!name){
+    return "?";
+  }
+
+  return name
+    .trim()
+    .charAt(0)
+    .toUpperCase();
+
+}
+
+
+/* =========================================================
+   OTURUMU GÖSTER
+========================================================= */
+
+function showAccount(user){
+
+  const name =
+    getUserName(user);
+
+  const email =
+    user?.email ||
+    "-";
+
+  userName.textContent =
+    name;
+
+  userEmail.textContent =
+    email;
+
+  profileAvatar.textContent =
+    getInitial(name);
+
+  loading.style.display =
+    "none";
+
+  loggedOut.classList.remove(
+    "show"
+  );
+
+  accountContent.classList.add(
+    "show"
+  );
+
+}
+
+
+/* =========================================================
+   GİRİŞ YAPILMAMIŞ
+========================================================= */
+
+function showLoggedOut(){
+
+  loading.style.display =
+    "none";
+
+  accountContent.classList.remove(
+    "show"
+  );
+
+  loggedOut.classList.add(
+    "show"
+  );
+
+}
+
+
+/* =========================================================
+   ÇIKIŞ
+========================================================= */
+
+async function logout(){
+
+  const token =
+    getAccessToken();
+
+  try{
+
+    if(token){
+
+      await fetch(
+        SUPABASE_URL +
+        "/auth/v1/logout",
+        {
+          method:"POST",
+          headers:{
+            "apikey":SUPABASE_ANON_KEY,
+            "Authorization":"Bearer " + token
+          }
+        }
+      );
+
+    }
+
+  }catch(error){
+
+    console.warn(
+      "Supabase logout:",
+      error
+    );
+
+  }
+
+
+  /* TÜM PANELMARKET OTURUM VERİLERİNİ TEMİZLE */
+
+  localStorage.removeItem(
+    "panelmarket_access_token"
+  );
+
+  localStorage.removeItem(
+    "panelmarket_refresh_token"
+  );
+
+  localStorage.removeItem(
+    "panelmarket_expires_in"
+  );
+
+  localStorage.removeItem(
+    "panelmarket_user"
+  );
+
+  localStorage.removeItem(
+    "panelmarket_session"
+  );
+
+
+  sessionStorage.removeItem(
+    "panelmarket_access_token"
+  );
+
+  sessionStorage.removeItem(
+    "panelmarket_refresh_token"
+  );
+
+  sessionStorage.removeItem(
+    "panelmarket_expires_in"
+  );
+
+  sessionStorage.removeItem(
+    "panelmarket_user"
+  );
+
+  sessionStorage.removeItem(
+    "panelmarket_session"
+  );
+
+
+  toast(
+    "Çıkış yapıldı."
+  );
+
+
+  setTimeout(() => {
+
+    window.location.href =
+      "login.html";
+
+  }, 700);
+
+}
+
+
+/* =========================================================
+   BAŞLAT
+========================================================= */
+
+async function initAccount(){
+
+  const token =
+    getAccessToken();
+
+  if(!token){
+
+    showLoggedOut();
+
+    return;
+
+  }
+
+
+  const user =
+    await getSupabaseUser();
+
+
+  if(!user){
+
+    /*
+      Token geçersizse eski oturum
+      kayıtlarını temizliyoruz.
+    */
+
+    localStorage.removeItem(
+      "panelmarket_access_token"
+    );
+
+    localStorage.removeItem(
+      "panelmarket_refresh_token"
+    );
+
+    localStorage.removeItem(
+      "panelmarket_expires_in"
+    );
+
+    localStorage.removeItem(
+      "panelmarket_user"
+    );
+
+    localStorage.removeItem(
+      "panelmarket_session"
+    );
+
+    showLoggedOut();
+
+    return;
+
+  }
+
+
+  /*
+    Güncel kullanıcı bilgisini kaydet
+  */
+
+  try{
+
+    localStorage.setItem(
+      "panelmarket_user",
+      JSON.stringify(user)
+    );
+
+  }catch(error){
+
+    console.warn(
+      "Kullanıcı kaydedilemedi:",
+      error
+    );
+
+  }
+
+
+  showAccount(user);
+
+}
+
+
+/* =========================================================
+   EVENT
+========================================================= */
+
+logoutButton.addEventListener(
+  "click",
+  logout
+);
+
+
+/* =========================================================
+   ÇALIŞTIR
+========================================================= */
+
+initAccount();
+
+</script>
+
 </body>
 </html>
