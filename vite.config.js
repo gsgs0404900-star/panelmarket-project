@@ -1,13 +1,20 @@
-import { defineConfig } from 'vite';
-
-export default defineConfig({
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        secure: false
+export default {
+  build: {
+    rollupOptions: {
+      input: {
+        index: "index.html",
+        login: "login.html",
+        register: "register.html",
+        hesabim: "hesabim.html",
+        paneller: "paneller.html",
+        kategoriler: "kategoriler.html",
+        fiyatlar: "fiyatlar.html",
+        hakkimizda: "hakkimizda.html",
+        detail: "detail.html",
+        payment: "payment.html",
+        support: "support.html",
+        admin: "admin.html"
       }
     }
   }
-});
+};
